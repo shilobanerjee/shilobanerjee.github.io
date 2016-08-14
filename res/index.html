@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<style>
+* {box-sizing:border-box}
+body {font-family: Verdana,sans-serif;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 300px;
+  /*max-height: 300px;
+  position: relative;
+  /*position: absolute; 
+    top: 490px; 
+    left: 10px; 
+    right: -250px; 
+    bottom: 100px; */
+  margin: auto;
+}
+
+ #slideshow { 
+    margin: 50px auto; 
+    position: absolute; 
+    top: 180px; 
+    left: 10px; 
+    right: 650px; 
+    bottom: 100px; 
+    width: 220px; 
+    height: 150px; 
+    padding: 10px; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.4); 
+}
+
+#slideshow >div { 
+    position: absolute; 
+    top: 20px; 
+    left: 10px; 
+    right: 10px; 
+    bottom: 50px; 
+}
+
+/* Caption text */
+.text {
+  color: #568858;
+  background-color:blue
+  font-size: 13px;
+  /*padding: 8px 12px;*/
+  position: absolute;
+  top: -40px;
+    right: 10;
+    width: 200px;
+    height: 100px;
+  /*  border: 3px solid #73AD21;
+  bottom: 0px;
+  width: 100%;*/
+  text-align: left;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style> 
+
+  <link rel="shortcut icon" type="image/jpg" href=/assets/img/temp_chem.jpg>
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+<header>
+    <a href="http://localhost:3000"><h1><span>Shiladitya Banerjee</span></h1></a>
+
+
+    <nav>
+        <a href="http://localhost:3000#about">home</a>
+        <a href=/people>people</a>
+        <!--<a href="http://localhost:3000#research">Research</a>-->
+        <a href=/res>research</a>
+        <a href=/pub>publications</a>
+        <a href=/teaching>teaching</a>
+        <!--<a href="http://localhost:3000#teaching">Teaching</a>-->
+        <a href="http://localhost:3000#contact">contact</a>
+    </nav>
+<br><br><br><em><h3><span>Soft Living Matter Group</span></h3></em>
+</header>
+
+<p></p>
+<div class="slideshow-container">
+
+
+<div class="mySlides fade">
+  <img src="im0.png" style="border:2px solid black" width=310 height=210>
+  
+</div>
+<div class="mySlides fade">
+  <img src="im1.png" style="border:2px solid black" width=310 height=210>
+  
+</div>
+<div class="mySlides fade">
+  <img src="im2.png" style="border:2px solid black" width=310 height=210>
+  
+</div>
+<div class="mySlides fade">
+  <img src="im3.png" style="border:2px solid black" width=310 height=210>
+  
+</div>
+
+</div>
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    var dots = document.getElementsByClassName("dot");
+    for (i = 0; i < slides.length; i++) {
+       slides[i].style.display = "none";
+    }
+    slideIndex++;
+    if (slideIndex> slides.length) {slideIndex = 1}
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex-1].style.display = "block";
+    dots[slideIndex-1].className += " active";
+    setTimeout(showSlides, 4000); // Change image every 2 seconds
+}
+</script>
+<div id="slideshow">
+   <div class="mySlides1 fade">
+     <p style="padding: 5px; color: white; background-color: #3E7B3E; border: none">Bacterial Growth Control</p>
+     <!--<div class="text"><b>Bacterial Growth Control</b></div>-->
+     How do cells regulate their size and control division timing?
+   </div>
+   <div class="mySlides1 fade">
+   <p style="padding: 5px; color: white; background-color: #2B6EC0; border: none">Collective Cell Migration</p>
+   <!--<div class="text"><b>Collective cell migration</b></div>-->
+     How do cells collectively move within a dense tissue?
+   </div>
+   <div class="mySlides1 fade">
+   <p style="padding: 5px; color: white; background-color: #D64D22; border: none">Mechanics of F-actin</p>
+     <!--<div class="text"><b>Mechanics of F-actin</b></div>-->
+     How do cells generate mechanical forces?
+   </div>
+   <div class="mySlides1 fade">
+   <p style="padding: 5px; color: white; background-color: #808B96; border: none">Cellular Mechanosensing</p>
+     <!--<div class="text"><b>Mechanics of F-actin</b></div>-->
+     How do adherent cells sense their extracellular matrix?
+   </div>
+</div>
+<script>
+
+var slideIndex1 = 0;
+showSlides1();
+
+function showSlides1() {
+    var i;
+    var slides1 = document.getElementsByClassName("mySlides1");
+    var dots1 = document.getElementsByClassName("dot");
+    for (i = 0; i < slides1.length; i++) {
+       slides1[i].style.display = "none";
+    }
+    slideIndex1++;
+    if (slideIndex1> slides1.length) {slideIndex1 = 1}
+    for (i = 0; i < dots1.length; i++) {
+        dots1[i].className = dots1[i].className.replace(" active", "");
+    }
+    slides1[slideIndex1-1].style.display = "block";
+    dots1[slideIndex1-1].className += " active";
+    setTimeout(showSlides1, 4000); // Change image every 2 seconds
+}
+</script>
+<section class="pub_section">
+ 
+  <h4>Theory of Living Soft Matter</h4>
+  <b> Actin Cytoskeleton</b> | <b>Active Soft Matter</b> | <b> Cell Mechanics and Collective Motility</b> | <b> Bacterial Cell Physics</b> | <b> Tissue Mechanics</b>
+  <div class="pub_list">
+   
+<br>
+<p align="justify">
+  Living cells and organisms form a novel class of soft materials that can autonomously generate forces, change shapes, grow, self-replicate and self-heal under applied stress. We integrate methods from statistical physics, soft matter mechanics and computer simulations to develop theoretical models of biological behavior from molecular to organismic scales. Our approach is highly cross-disciplinary and is performed in close collaboration with experimental laboratories in soft matter, cell biology and biophysics.</p>
+
+<em><b>Representative Publications</b></em>
+<ul style="list-style-type:square">
+  <li align="justify"> S. Banerjee, N.F. Scherer and A.R. Dinner, "Shape dynamics of growing cell walls", <a href="http://pubs.rsc.org/en/content/articlelanding/2016/sm/c5sm02991k#!divAbstract"> Soft Matter <b>12</b>, 3442 (2016)</a>.
+  <li align="justify"> S. Banerjee, K.J.C. Utuje and M.C. Marchetti, "Propagating stress waves during epithelial expansion", <a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.228101">Physical Review Letters <b>114</b>, 228101 (2015)</a>.
+ <li align="justify">P.W. Oakes, S. Banerjee, M.C. Marchetti and M.L. Gardel, "Geometry Regulates Traction Stresses in Adherent Cells", <a href="http://www.cell.com/biophysj/abstract/S0006-3495(14)00717-6">Biophysical Journal <b>107</b>, 825 (2014)</a>.
+ <li align="justify"> A.F. Mertz, Y. Che, S. Banerjee, J. Goldstein, S. Revilla, C. Niessen, M.C. Marchetti, E.R. Dufresne and V. Horsley, "Cadherin-Based Intercellular Adhesions Organize Epithelial Cell-Matrix Traction Forces”, <a href="http://www.pnas.org/content/110/3/842.short">Proc. Natl. Acad. Sci. U.S.A. <b>110</b>, 842 (2013)</a>.
+ <li align="justify"> A.F. Mertz, S. Banerjee, Y. Che, G. German, Y. Xu, C. Hyland, M.C. Marchetti, V. Horsley and E.R. Dufresne, "Scaling of Traction Forces with the Size of Cohesive Cell Colonies", <a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.198101">Physical Review Letters <b>108</b>, 198101 (2012)</a>.
+</ul>
+<br>
+<em><b>Collaborators</b></em>
+ <ul style="list-style-type:disc">
+ <li align="justify"> Michael Murrell (Yale University)
+ <li align="justify"> Guillaume Charras (University College London)
+ <li align="justify"> Margaret Gardel (University of Chicago)
+ <li align="justify"> Aaron Dinner (University of Chicago)
+ <li align="justify"> Norbert Scherer (University of Chicago)
+ <li align="justify"> M. Cristina Marchetti (Syracuse University)
+ <li align="justify"> Edwin Munro (University of Chicago)
+ <li align="justify"> Patrick Oakes (University of Rochester)
+  </div>
+  <!--
+  <h5 id="research">Selected Publications</h5>
+  <ol class="bibliography"><li><span id="banerjee2016shape">S. Banerjee, N. F. Scherer, and A. R. Dinner, “Shape dynamics of growing cell walls,” <i>Soft Matter</i>, vol. 12, no. 14, pp. 3442–3450, 2016. [<a href="http://pubs.rsc.org/en/Content/ArticleLanding/2016/SM/C5SM02991K#!divAbstract" target="_blank">Journal</a>][<a href="/assets/files/SoftMatter2016.pdf" target="_blank">PDF</a>]</span></li>
+<li><span id="banerjee2015propagating">S. Banerjee, K. J. C. Utuje, and M. C. Marchetti, “Propagating stress waves during epithelial expansion,” <i>Physical Review Letters</i>, vol. 114, no. 22, p. 228101, 2015. [<a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.228101" target="_blank">Journal</a>][<a href="/assets/files/Banerjee_PRL2015.pdf" target="_blank">PDF</a>]</span></li>
+<li><span id="oakes2014geometry">P. W. Oakes, S. Banerjee, M. C. Marchetti, and M. L. Gardel, “Geometry regulates traction stresses in adherent cells,” <i>Biophysical Journal</i>, vol. 107, no. 4, pp. 825–833, 2014. [<a href="http://www.sciencedirect.com/science/article/pii/S0006349514007176" target="_blank">Journal</a>][<a href="/assets/files/Oakes_BPJ2014.pdf" target="_blank">PDF</a>]</span></li>
+<li><span id="mertz2013cadherin">A. F. Mertz, Y. Che, S. Banerjee, J. M. Goldstein, K. A. Rosowski, S. F. Revilla, C. M. Niessen, M. C. Marchetti, E. R. Dufresne, and V. Horsley, “Cadherin-based intercellular adhesions organize epithelial cell–matrix traction forces,” <i>Proceedings of the National Academy of Sciences</i>, vol. 110, no. 3, pp. 842–847, 2013. [<a href="http://www.pnas.org/content/110/3/842.full" target="_blank">Journal</a>][<a href="/assets/files/Mertz_PNAS2013.pdf" target="_blank">PDF</a>]</span></li>
+<li><span id="mertz2012scaling">A. F. Mertz, S. Banerjee, Y. Che, G. K. German, Y. Xu, C. Hyland, M. C. Marchetti, V. Horsley, E. R. Dufresne, and others, “Scaling of traction forces with the size of cohesive cell colonies,” <i>Physical Review Letters</i>, vol. 108, no. 19, p. 198101, 2012. [<a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.198101" target="_blank">Journal</a>][<a href="/assets/files/Mertz_PRL2012.pdf" target="_blank">PDF</a>]</span></li></ol>-->
+</section>
+
+<footer>
+  <div class="content-wrap">
+    <nav>
+        <a href="http://localhost:3000#about">home</a>
+        <a href=/people>people</a>
+        <a href=/res>research</a>
+        <a href=/pub>publications</a>
+        <a href=/teaching>teaching</a>
+        <a href="http://localhost:3000#contact">contact</a>
+    </nav>
+
+    <p class="copyright">All content copyright 2016</p>
+  </div>
+</footer>
+
+
+<script src="/assets/js/jquery-2.1.1.min.js"></script>
+<script src="/assets/js/functions.js" type="text/javascript"></script>
+</body>
+</html>
