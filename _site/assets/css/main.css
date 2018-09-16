@@ -223,7 +223,7 @@ body {
   -webkit-tap-highlight-color: #FFF498; }
 
 body {
-  background: #FFFFFF;
+  background: #F6F6F8;
   font-size: 14px;
   line-height: 1.6;
   font-family: "Georgia";
@@ -451,7 +451,7 @@ h3 {
 .contact-icon {
   height: 50px;
   width: 50px;
-  background: #FFFFFF;
+  background: #F6F6F8;
   float: left; }
   .contact-icon path {
     fill: rgba(0, 0, 0, 0.7); }
