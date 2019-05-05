@@ -147,10 +147,10 @@ td, th {
   padding: 0; }
 
 @font-face {
-  font-family: 'Georgia';
+  font-family: 'Arial';
   font-style: normal;
   font-weight: 400;
-  src: local("Georgia"), local("Georgia"), url(//themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format("woff"); }
+  src: local("Arial"), local("Arial"), url(//themes.googleusercontent.com/static/fonts/opensans/v8/cJZKeOuBrn4kERxqtaUH3bO3LdcAZYWl9Si6vvxL-qU.woff) format("woff"); }
 .gigantic, .huge, .large, .bigger, .big,
 h1, h2, h3, h4, h5, h6 {
   color: #153715;
