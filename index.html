@@ -8,6 +8,22 @@
  
 <style>
 * {box-sizing:border-box}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {font-family: Verdana,sans-serif;}
 #sidebar {
 float: right;
@@ -313,7 +329,9 @@ function showSlides() {
 
 <br>
 
-<section class="contact-section">
+<div class="row">
+  <div class="column" style="background-color:#aaa;">
+   <section class="contact-section">
   <div>
     <h3 id="contact">Contact Information</h3>
     <div class="contact-info">
@@ -334,6 +352,14 @@ function showSlides() {
     </div>
   </div>
 </section>
+  </div>
+  <div class="column" style="background-color:#bbb;">
+    <h2>Column 2</h2>
+    <p>Some text..</p>
+  </div>
+</div>
+
+
 
 <footer>
   <div class="content-wrap">
