@@ -8,22 +8,6 @@
  
 <style>
 * {box-sizing:border-box}
-
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  /*Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
 body {font-family: Verdana,sans-serif;}
 #sidebar {
 float: right;
@@ -329,16 +313,14 @@ function showSlides() {
 
 <br>
 
-<div class="row">
-  <div class="column">
-   <section class="contact-section">
+<section class="contact-section">
   <div>
     <h3 id="contact">Contact Information</h3>
     <div class="contact-info">
     
       <p><b>Mailing Address:</b><br>Prof. Shiladitya Banerjee<br>Department of Physics<br>Carnegie Mellon University<br>5000 Forbes Ave<br>Pittsburgh, PA 15213<br>United States</p>
       <p><b>Email</b>: shiladtb AT andrew.cmu.edu<br> <b>Phone</b>: (+1) 412-268-9418<br> <b>Office</b>: Wean Hall 6301 [<a href="https://www.cmu.edu/mscf/files/cmu_map_8.5x11.pdf"><font color = "#761212">Map</font></a>]</p>
-      
+      <a href="https://twitter.com/ShilaBanerji"> <img border="0" alt="Twitter" src="/assets/img/twitter.jpg" width="53" height="53"></a>
       <!--
       <a href="https://www.ucl.ac.uk/physics-living-systems">
       <Institute for the Physics of Living Systems</a> -->
@@ -352,13 +334,6 @@ function showSlides() {
     </div>
   </div>
 </section>
-  </div>
-  <div class="column">
-    <a class="twitter-timeline" data-width="300" data-height="600" href="https://twitter.com/ShilaBanerji?ref_src=twsrc%5Etfw">Tweets by ShilaBanerji</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-  </div>
-</div>
-
-
 
 <footer>
   <div class="content-wrap">
