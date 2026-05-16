@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid meet">
+  <!-- Warm gradient background -->
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1410"/>
+      <stop offset="50%" stop-color="#3a2515"/>
+      <stop offset="100%" stop-color="#1a0e08"/>
+    </linearGradient>
+    <radialGradient id="cellGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f4a261" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#c2410c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c2410c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellBody" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fcd34d" stop-opacity="0.55"/>
+      <stop offset="70%" stop-color="#c2410c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#7a2410" stop-opacity="0.7"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2"/>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="500" height="600" fill="url(#bg1)"/>
+
+  <!-- Subtle grid -->
+  <g stroke="rgba(252,211,77,0.04)" stroke-width="1">
+    <path d="M 0 100 L 500 100 M 0 200 L 500 200 M 0 300 L 500 300 M 0 400 L 500 400 M 0 500 L 500 500"/>
+    <path d="M 100 0 L 100 600 M 200 0 L 200 600 M 300 0 L 300 600 M 400 0 L 400 600"/>
+  </g>
+
+  <!-- Glow halo -->
+  <ellipse cx="250" cy="300" rx="220" ry="280" fill="url(#cellGlow)"/>
+
+  <!-- Bacterial cell body (rod-shaped) -->
+  <g>
+    <!-- Outer rod outline -->
+    <rect x="130" y="120" width="240" height="360" rx="120" ry="120"
+          fill="url(#cellBody)"
+          stroke="#fcd34d" stroke-width="1.5" stroke-opacity="0.6"/>
+    <!-- Inner membrane suggestion -->
+    <rect x="142" y="132" width="216" height="336" rx="108" ry="108"
+          fill="none"
+          stroke="#fcd34d" stroke-width="0.5" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Layer 1: Input nodes (top of cell — sensors) -->
+  <g filter="url(#glow)">
+    <circle cx="190" cy="195" r="9" fill="#6ee7c7" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="250" cy="180" r="9" fill="#6ee7c7" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="310" cy="195" r="9" fill="#6ee7c7" stroke="#fff" stroke-width="0.8"/>
+  </g>
+
+  <!-- Layer 2: Hidden recurrent nodes (middle of cell) -->
+  <g filter="url(#glow)">
+    <circle cx="180" cy="300" r="11" fill="#fcd34d" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="250" cy="290" r="11" fill="#fcd34d" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="320" cy="300" r="11" fill="#fcd34d" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="210" cy="360" r="11" fill="#fcd34d" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="290" cy="360" r="11" fill="#fcd34d" stroke="#fff" stroke-width="0.8"/>
+  </g>
+
+  <!-- Layer 3: Output nodes (bottom of cell — phenotype) -->
+  <g filter="url(#glow)">
+    <circle cx="200" cy="430" r="9" fill="#f97316" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="260" cy="440" r="9" fill="#f97316" stroke="#fff" stroke-width="0.8"/>
+    <circle cx="320" cy="430" r="9" fill="#f97316" stroke="#fff" stroke-width="0.8"/>
+  </g>
+
+  <!-- Connections: input → hidden -->
+  <g stroke="#6ee7c7" stroke-width="0.8" stroke-opacity="0.45" fill="none">
+    <line x1="190" y1="195" x2="180" y2="300"/>
+    <line x1="190" y1="195" x2="250" y2="290"/>
+    <line x1="250" y1="180" x2="180" y2="300"/>
+    <line x1="250" y1="180" x2="250" y2="290"/>
+    <line x1="250" y1="180" x2="320" y2="300"/>
+    <line x1="310" y1="195" x2="250" y2="290"/>
+    <line x1="310" y1="195" x2="320" y2="300"/>
+  </g>
+
+  <!-- Connections: hidden ↔ hidden (the "recurrent" part) -->
+  <g stroke="#fcd34d" stroke-width="1" stroke-opacity="0.55" fill="none">
+    <line x1="180" y1="300" x2="250" y2="290"/>
+    <line x1="250" y1="290" x2="320" y2="300"/>
+    <line x1="180" y1="300" x2="210" y2="360"/>
+    <line x1="250" y1="290" x2="210" y2="360"/>
+    <line x1="250" y1="290" x2="290" y2="360"/>
+    <line x1="320" y1="300" x2="290" y2="360"/>
+    <line x1="210" y1="360" x2="290" y2="360"/>
+    <line x1="180" y1="300" x2="320" y2="300"/>
+  </g>
+
+  <!-- Recurrent self-loops (curved arrows) -->
+  <g stroke="#fcd34d" stroke-width="1.2" stroke-opacity="0.7" fill="none">
+    <path d="M 240 282 Q 230 260 260 282" marker-end="url(#arrow)"/>
+    <path d="M 170 292 Q 155 270 188 292" marker-end="url(#arrow)"/>
+    <path d="M 310 292 Q 295 270 328 292" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Connections: hidden → output -->
+  <g stroke="#f97316" stroke-width="0.8" stroke-opacity="0.45" fill="none">
+    <line x1="210" y1="360" x2="200" y2="430"/>
+    <line x1="210" y1="360" x2="260" y2="440"/>
+    <line x1="290" y1="360" x2="260" y2="440"/>
+    <line x1="290" y1="360" x2="320" y2="430"/>
+    <line x1="250" y1="290" x2="260" y2="440"/>
+  </g>
+
+  <!-- Marker definition -->
+  <defs>
+    <marker id="arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#fcd34d"/>
+    </marker>
+  </defs>
+</svg>
