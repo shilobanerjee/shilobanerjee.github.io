@@ -50,15 +50,6 @@
       gap: 10px;
       position: relative;
     }
-    .coord-marker {
-      position: absolute; top: -14px; right: -14px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; color: var(--accent);
-      letter-spacing: 0.08em;
-      background: var(--paper); padding: 4px 10px;
-      border: 1px solid var(--rule); border-radius: 100px;
-      z-index: 2;
-    }
     .hero-img {
       border-radius: 4px; overflow: hidden;
       position: relative; background: #2a1408;
@@ -71,15 +62,6 @@
       background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.45) 100%);
       pointer-events: none;
     }
-    .img-caption {
-      position: absolute; bottom: 14px; left: 14px;
-      color: rgba(255,255,255,0.9);
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 10px; letter-spacing: 0.1em;
-      text-transform: uppercase; z-index: 2;
-    }
-    .hero-img.main .img-caption { bottom: 18px; left: 18px; font-size: 11px; }
-
     /* ---- NEWS ---- */
     .news-strip {
       background: var(--paper-warm);
@@ -236,6 +218,9 @@
       <li><a href="/pub">Publications</a></li>
       <li><a href="/#contact">Contact</a></li>
     </ul>
+    <button class="nav-hamburger" aria-label="Toggle menu" onclick="this.classList.toggle('open');document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 </header>
 
@@ -253,18 +238,14 @@
     </div>
   </div>
   <div class="hero-images">
-    <span class="coord-marker">FIG · 01</span>
     <div class="hero-img main">
       <img src="/SVIE.png" alt="Physics of living systems simulation">
-      <span class="img-caption">cytokinesis dynamics</span>
     </div>
     <div class="hero-img small-1">
       <img src="/res/im2.png" alt="Epithelial tissue simulation">
-      <span class="img-caption">epithelium</span>
     </div>
     <div class="hero-img small-2">
       <img src="/res/im0.png" alt="Single-cell biophysics">
-      <span class="img-caption">single-cell</span>
     </div>
   </div>
 </section>
