@@ -1,478 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title></title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/jpg" href=/assets/img/ucl_gom.jpg>
-  <link rel="stylesheet" href="/assets/css/main.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Banerjee Lab publications — peer-reviewed papers and preprints in biophysics, statistical physics, and living matter.">
+  <title>Publications — Banerjee Lab</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    .page-hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 72px 40px 56px;
+      border-bottom: 1px solid var(--rule);
+      display: flex; justify-content: space-between; align-items: flex-end; gap: 24px;
+    }
+    .page-hero-left h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 56px; font-weight: 500;
+      letter-spacing: -0.025em; line-height: 1.05;
+      margin-top: 16px;
+    }
+    .page-hero-left h1 em { font-style: italic; color: var(--accent); font-weight: 400; }
+    .scholar-link {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 10px 18px; border-radius: 4px;
+      white-space: nowrap; flex-shrink: 0;
+      transition: all 0.2s;
+    }
+    .scholar-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+
+    /* Publication list */
+    .pub-content {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 40px 80px;
+    }
+
+    /* Year dividers */
+    .year-group { margin-bottom: 8px; }
+    .year-label {
+      display: flex; align-items: center; gap: 16px;
+      padding: 20px 0 12px;
+    }
+    .year-label span {
+      font-family: 'Fraunces', serif;
+      font-size: 20px; font-weight: 400;
+      font-style: italic; color: var(--ink-faint);
+      white-space: nowrap;
+    }
+    .year-rule { flex: 1; height: 1px; background: var(--rule-soft); }
+
+    /* Paper entries */
+    .pub-entry {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--rule-soft);
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 24px; align-items: start;
+    }
+    .pub-entry:hover { background: var(--paper-warm); margin: 0 -16px; padding: 20px 16px; }
+    .pub-venue {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 8px; font-weight: 500;
+    }
+    .pub-title {
+      font-family: 'Fraunces', serif;
+      font-size: 18px; font-weight: 500;
+      line-height: 1.3; color: var(--ink);
+      margin-bottom: 8px;
+    }
+    .pub-title a { color: var(--ink); }
+    .pub-title a:hover { color: var(--accent); text-decoration: none; }
+    .pub-authors { font-size: 14px; color: var(--ink-soft); margin-bottom: 8px; }
+    .pub-callouts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+    .callout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.08em;
+      padding: 3px 10px; border-radius: 100px;
+      background: var(--accent-soft); color: var(--accent);
+      font-weight: 500; text-transform: uppercase;
+    }
+    .callout a { color: var(--accent); }
+    .callout a:hover { text-decoration: none; }
+    .callout.press { background: #f0f9ff; color: #0369a1; }
+    .callout.press a { color: #0369a1; }
+    .pub-thumb {
+      width: 90px; aspect-ratio: 4/3;
+      border-radius: 3px; overflow: hidden;
+      flex-shrink: 0;
+    }
+    .pub-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    @media (max-width: 900px) {
+      .page-hero { flex-direction: column; align-items: flex-start; }
+      .pub-entry { grid-template-columns: 1fr; }
+      .pub-thumb { display: none; }
+      .page-hero-left h1 { font-size: 40px; }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <a href="http://shiladitya-banerjee.com"><h1><span>Banerjee Lab</span></h1></a>
 
-
-    <nav>
-        <a href="http://shiladitya-banerjee.com">home</a>
-        <a href=/people>people</a>
-        <!--<a href="http://localhost:3000#research">Research</a>-->
-        <a href=/res>research</a>
-        <a href=/pub>publications</a>
-        <a href=/teaching>links</a>
-        <!--<a href="http://localhost:3000#teaching">Teaching</a>-->
-        <a href="http://shiladitya-banerjee.com#contact">contact</a>
-    </nav>
-<br><br><p><h3><span style="font-family:'Brush Script MT', cursive; color:#335CDA; font-size:24px">Physics of Living Systems</span></h3></p>
+<header class="site-header">
+  <nav class="site-nav">
+    <a class="nav-brand" href="/">
+      <svg class="nav-brand-mark" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="10" stroke="var(--accent)" stroke-width="1.2"/>
+        <circle cx="11" cy="11" r="6" stroke="var(--accent)" stroke-width="1" opacity="0.5"/>
+        <circle cx="11" cy="11" r="3" fill="var(--accent)"/>
+      </svg>
+      Banerjee<span class="dot">.</span>Lab
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/res">Research</a></li>
+      <li><a href="/people">People</a></li>
+      <li><a href="/pub" class="active">Publications</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
 </header>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-82654585-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
-   <div class='altmetric-embed' data-badge-type='donut' data- doi="10.1101/2020.03.08.982728"></div>
-
-<section class="pub_section">
-	<!--<p>	<a href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate"> <img border="0" alt="Google Scholar Citations" src="/assets/img/Google_Scholar_logo.png" width="110" height="44"></a></p>-->
-  <!--<div style="background-image: url(http://localhost:3000" class="course_image"></div>
-
-
-
-
-  -->
-  <h4>Publications<a href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate"> <img border="0" alt="Google Scholar Citations" src="/assets/img/Google_Scholar_logo.png" width="110" height="44" align="right"></a></h4>
-  <div class="pub_list">
-<b><font color = "#1358C1">Preprints</b></font>
-<ul style="list-style-type:square; padding-left: 1.2em;">
-
-	<li align="justify"> <b>Learning Epithelial Elasticity via Local Tension Remodeling</b><br> 
-		   Arzash S, Banerjee S<br>
-		   <a href="https://www.biorxiv.org/content/10.64898/2025.12.17.694921v1.abstract"><font color = "#761212"> bioRxiv:694921 (2025) </font></a><br>
-
-	<li align="justify"> <b>Reinforcement learning for adaptive control of phenotypically heterogeneous bacterial populations</b><br> 
-		   Kratz JC, Wen Z, Banerjee S, Carja O<br>
-		   <a href="https://www.biorxiv.org/content/10.1101/2025.11.21.689767v1"><font color = "#761212"> bioRxiv:689767 (2025) </font></a><br>
-
-<li align="justify"> <b>Cell Geometry Limits Bacterial Metabolic Efficiency</b><br> 
-		   Cylke A, Banerjee S<br>
-		   <a href="https://www.biorxiv.org/content/10.1101/2025.08.11.669779v1"><font color = "#761212"> bioRxiv:669779 (2025) </font></a><br>
-
-
-
-
-
-
-
-
-
-
-</ul>
-
-<b><font color = "#1358C1">Peer Reviewed</b></font>
-<ul style="list-style-type:square; padding-left: 1.2em;">
-<!--<img src="/assets/img/comp.png" alt="Smiley face" width="100" height="80" align="right" hspace="10"> -->
-
-<li align="justify"> <b>Multi-timescale adaptation and emergent learning in single bacterial cells</b><br> 
-		   Kratz JC, Wang H, Si F, Banerjee S<br>
-		   <a href="https://doi.org/10.1103/5zbg-8vll"><font color = "#761212"> PRX Life (2026) </font></a><br>
-
-<li align="justify"> <b>Mechanosensitive feedback organizes cell shape and motion during hindbrain neuropore morphogenesis</b><br> 
-		   Perez-Verdugo F, Maniou E, Galea G, Banerjee S<br>
-		   <a href="https://www.cell.com/current-biology/fulltext/S0960-9822(26)00255-1?rss=yes"><font color = "#761212"> Current Biology 36, 1908 (2026)</font></a><br>
-		   <a href="https://research.gatech.edu/physics-brain-development-how-cells-pull-together-form-neural-tube"><font color = "#0000A0">GT News</font></a></font>|<a href="hhttps://phys.org/news/2026-04-physics-brain-cells-neural-tube.html"><font color = "#0000A0">Phys.org</font></a></font>|<a href="https://www.eurekalert.org/news-releases/1124961"><font color = "#0000A0">EurekAlert!</font></a></font>|<a href="https://neurosciencenews.com/physics-neural-tube-closure-30564/"><font color = "#0000A0">Neuroscience News</font></a></font>
-
-<li align="justify"> <b>Proliferation symmetry breaking in growing tissues</b><br> 
-		   Li X, Datta A, Banerjee S<br>
-		   <a href="https://journals.aps.org/prresearch/abstract/10.1103/jgll-wsvt"><font color = "#761212"> Phys. Rev. Research 8, L012014 (2026). Letter</font></a><br>
-
-<li align="justify"> <b>Physical traits of supercompetitors in cell competition</b><br> 
-		   Carpenter LC, Banerjee S<br>
-		   <a href="https://royalsocietypublishing.org/doi/10.1098/rsif.2025.0638"><font color = "#761212"> Journal of the Royal Society Interface 22, 20250638 (2025)</font></a><br>
-
-<li align="justify"> <b>Gene expression cycles drive non-exponential bacterial growth</b><br> 
-		   Cylke A, Banerjee S<br>
-		   <a href="https://journals.aps.org/prresearch/abstract/10.1103/24rx-sxcw"><font color = "#761212"> Phys. Rev. Research 7, 033123 (2025) </font></a><br>
-
-<li align="justify"> <b>Design principles and feedback mechanisms in organelle size control</b><br> 
-		   Banerjee DS, Banerjee S<br>
-		   <a href="https://www.sciencedirect.com/science/article/abs/pii/S0955067425000717"><font color = "#761212">Current Opinion in Cell Biology 95, 102533 (2025)</font></a><br>
-
-<li align="justify"> <b>Catalytic growth in a shared enzyme pool ensures robust control of centrosome size</b><br> 
-		   Banerjee DS, Banerjee S<br>
-		   <a href="https://doi.org/10.7554/eLife.92203.3"><font color = "#761212">eLife 12, RP92203 (2025)</font></a><br>
-
-<li align="justify"> <b>Interplay of condensate material properties and chromatin heterogeneity governs nuclear condensate ripening</b><br> 
-		   Banerjee DS, Chigumira T, Lackner RM, Kratz JC, Chenoweth DM, Banerjee S, Zhang H<br>
-		   <a href="https://elifesciences.org/reviewed-preprints/101777"><font color = "#761212"> eLife 13, RP101777 (2024)</font></a><br>
-
-<li align="justify"> <b>Energy allocation theory for bacterial growth control in and out of steady state</b><br> 
-		   Cylke A, Serbanescu D, Banerjee S<br>
-		   <a href="https://royalsocietypublishing.org/doi/10.1098/rspa.2024.0219"><font color = "#761212"> Proceedings of the Royal Society A 480, 20240219 (2024) </font></a><br>
-
-<li align="justify"><img src="/assets/img/coverCB.jpeg" alt="Smiley face" width="100" height="130" align="right" hspace="10"> <b>Mechanical and biochemical feedback combine to generate complex contractile oscillations in cytokinesis</b><br> 
-		   Werner ME, Ray DD, Breen C, Staddon MF, Jug F, Banerjee S, Maddox AS<br>
-		   <a href="https://www.cell.com/current-biology/abstract/S0960-9822(24)00821-2"><font color = "#761212">Current Biology 34, 3201 (2024)</font></a><br>
-		    <a href="https://www.cell.com/current-biology/abstract/S0960-9822(24)00749-8"><font color = "#0000A0">Current Biology Dispatch: 'Actomyosin cortex: Inherently oscillatory?'</font></a></font>
-
-<li align="justify"> <b>Differential growth regulates asymmetric size partitioning in Caulobacter crescentus</b><br> 
-		   Ng TW, Ojkic N, Serbanescu D, Banerjee S<br>
-		   <a href="https://www.life-science-alliance.org/content/7/8/e202402591#nogo"><font color = "#761212"> Life Sci. Alliance 7, e202402591 (2024)</font></a><br>
-
-<li align="justify"> <b>Excitable dynamics driven by mechanical feedback in biological tissues</b><br> 
-		   Perez-Verdugo F, Banks S, Banerjee S<br>
-		   <a href="https://www.nature.com/articles/s42005-024-01661-2"><font color = "#761212"> Communications Physics 7, 167 (2024)</font></a><br>
-
-<li align="justify"><img src="/assets/img/cyto.png" alt="Smiley face" width="100" height="131" align="right" hspace="10"> <b>Growth-induced collective bending and kinetic trapping of cytoskeletal filaments</b><br> 
-		   Banerjee DS, Freedman SL, Murrell MP, Banerjee S<br>
-		   <a href="https://onlinelibrary.wiley.com/doi/10.1002/cm.21877"><font color = "#761212"> Cytoskeleton 81, 409 (2024)</font></a><br>
-		   <a href="https://onlinelibrary.wiley.com/doi/10.1002/cm.21906"><font color = "#0000A0">Cover image</font></a></font>
-
-<li align="justify"> <b>Mechanical control of cell proliferation patterns in growing epithelial monolayers</b><br> 
-		   Carpenter LC, Perez-Verdugo F, Banerjee S<br>
-		   <a href="https://www.cell.com/biophysj/abstract/S0006-3495(24)00167-X"><font color = "#761212">Biophysical Journal 123, 909 (2024)</font></a><br>
-
-<li align="justify"><b>Gene Expression Tradeoffs Determine Bacterial Survival and Adaptation to Antibiotic Stress</b><br> 
-		   Kratz JC, Banerjee S<br>
-		   <a href="https://journals.aps.org/prxlife/accepted/b507aI0dXae1f30220e613b5f467e8be058ca2fec"><font color = "#761212">PRX Life 2, 013010 (2024)</font></a><br>
-
-
-<li align="justify"><img src="/assets/img/PRXf.png" alt="Smiley face" width="100" height="100" align="right" hspace="10"> <b>Tension Remodeling Regulates Topological Transitions in Epithelial Tissues</b><br> 
-		   Perez-Verdugo F, Banerjee S<br>
-		   <a href="https://journals.aps.org/prxlife/abstract/10.1103/PRXLife.1.023006"><font color = "#761212">PRX Life 1, 023006 (2023)</font></a><br><a href="https://physics.aps.org/articles/v16/s169"><font color = "#0000A0">Featured in APS Physics Magazine</font></a></font>
-
-
-
-<li align="justify"> <b>Dynamic proteome trade-offs regulate bacterial cell size and growth in fluctuating nutrient environments</b><br> 
-		   Kratz JC, Banerjee S<br>
-		   <a href="https://www.nature.com/articles/s42003-023-04865-4"><font color = "#761212">Communications Biology 6, 486 (2023)</font></a><br>
-
-<li align="justify"> <b>Membrane tension induces F-actin reorganization and flow in a biomimetic model cortex</b><br> 
-		   Sakamoto R, Banerjee DS, Yadav V, Chen S, Gardel ML, Sykes C, Banerjee S, Murrell MP<br>
-		   <a href="https://www.nature.com/articles/s42003-023-04684-7"><font color = "#761212">Communications Biology 6, 325 (2023)</font></a><br>
-
-<li align="justify"> <b>Super-exponential growth and stochastic size dynamics in rod-like bacteria</b><br> 
-		   Cylke A, Banerjee S<br>
-		   <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(23)00121-2"><font color = "#761212">Biophysical Journal 122, 1254 (2023)</font></a><br>
-
-<li align="justify"> <img src="/assets/img/aggregate.png" alt="Smiley face" width="200" height="80" align="right" hspace="10"><b>Interplay between substrate rigidity and tissue fluidity regulates cell monolayer spreading</b><br> 
-		   Staddon MF, Murrell MP, Banerjee S<br>
-		   <a href="https://pubs.rsc.org/en/content/articlelanding/2022/sm/d2sm00757f"><font color = "#761212">Soft Matter 18, 7877 (2022)</font></a><br>
-		   <a href="https://pubs.rsc.org/en/journals/articlecollectionlanding?sercode=sm&themeid=7d26001d-2d1a-4abb-8fa8-498605a9da69"><font color = "#0000A0">Part of themed collection: Soft Matter Emerging Investigators</font></a></font>
-
-<li align="justify"> <b>Effects of antibiotics on bacterial cell morphology and their physiological origins</b><br> 
-		   Cylke C, Si F, Banerjee S<br>
-		   <a href="https://portlandpress.com/biochemsoctrans/article-abstract/doi/10.1042/BST20210894/231752/Effects-of-antibiotics-on-bacterial-cell?redirectedFrom=fulltext"><font color = "#761212">Biochemical Society Transactions 50, 1269 (2022)</font></a><br>
-
-<li align="justify"> <b>Cell-Matrix Elastocapillary Interactions Drive Pressure-Based Wetting of Cell Aggregates</b><br> 
-		   Yousafzai MS, Yadav V, Amiri S, Staddon MF, Tabatabai AP, Errami Y, Jaspard G, Amiri S, Banerjee S, and Murrell MP<br>
-		   <a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.12.031027"><font color = "#761212">Physical Review X 12, 031027 (2022)</font></a><br>
-
-<li align="justify"> <b>Size regulation of multiple organelles competing for a limiting subunit pool</b><br> 
-		   Banerjee DS, Banerjee S<br>
-		   <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010253"><font color = "#761212">PLoS Computational Biology 18, e1010253 (2022)</font></a><br>
-
-<li align="justify"> <b>Emergence and maintenance of variable-length actin filaments in a limiting pool of building blocks</b><br> 
-		   Banerjee DS, Banerjee S<br>
-		   <a href="http://dx.doi.org/10.1016/j.bpj.2022.05.014"><font color = "#761212">Biophysical Journal 121, 2436 (2022)</font></a><br>
-
-<li align="justify"> <img src="/assets/img/antibiotic.png" alt="Smiley face" width="100" height="60" align="right" hspace="10"><b>Antibiotic resistance via bacterial cell shape-shifting</b><br> 
-		   Ojkic N, Serbanescu D, Banerjee S<br>
-		   <a href="https://journals.asm.org/doi/10.1128/mbio.00659-22"><font color = "#761212">mBio 13, e00659-22 (2022)</font></a><br>
-		   <a href="https://journals.asm.org/doi/10.1128/mbio.00659-22"><font color = "#0000A0">Editor's Pick</font></a></font>
-
-<li align="justify"> <b>Force-dependent intercellular adhesion 
-strengthening underlies asymmetric adherens junction contraction</b><br> 
-		   Cavanaugh K, Staddon MF, Chmiel TA, Harmon RM, Budnar S, Yap AS, Banerjee S, Gardel ML<br>
-		   <a href="https://www.cell.com/current-biology/fulltext/S0960-9822(22)00419-5"><font color = "#761212">Current Biology 32, 1986 (2022)</font></a><br>
-		   
-<li align="justify"> <img src="/assets/img/pulsatile.png" alt="Smiley face" width="100" height="91" align="right" hspace="10"><b>Pulsatile contractions and pattern formation in excitable actomyosin cortex</b><br>
-		   Staddon MF, Munro EM, Banerjee S<br>
-		   <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009981"><font color = "#761212">PLoS Computational Biology 18, e1009981 (2022)</font></a><br>
-
-<li align="justify"> <b>Cellular resource allocation strategies for cell size and shape control in bacteria</b><br> 
-		   Serbanescu D, Ojkic N, Banerjee S<br>
-		   <a href="https://febs.onlinelibrary.wiley.com/doi/10.1111/febs.16234"><font color = "#761212">The FEBS Journal (2021)</font></a><br>
-
-<li align="justify"> <img src="/assets/img/comp.png" alt="Smiley face" width="100" height="80" align="right" hspace="10"><b>Cell-scale biophysical determinants of cell competition in epithelia</b><br> 
-		   Gradeci D, Bove A, Vallardi G, Lowe AR*, Banerjee S*, Charras G*<br>
-		   <a href="https://elifesciences.org/articles/61011"><font color = "#761212">eLife 10, e61011 (2021)</font></a><br>
-		    <a href="https://www.cell.com/current-biology/ppt/S0960-9822(21)00719-3.ppt"><font color = "#0000A0">Current Biology Dispatch: 'Cell competition: Bridging the scales through cell-based modeling'</font></a></font>
-
-	<li align="justify"> <img src="/assets/img/hnp.png" alt="Smiley face" width="100" height="130" align="right" hspace="10"> <b>Hindbrain neuropore tissue geometry determines asymmetric cell-mediated closure dynamics in mouse embryos</b><br> 
-		   Maniou E, Staddon MF, Marshall A, Greene A, Copp A, Banerjee S*, Galea G*<br>
-		   <a href="https://www.pnas.org/content/118/19/e2023163118"><font color = "#761212">PNAS 118, e2023163118 (2021)</font></a><br>
-
-<!--<img src="/assets/img/ugtp.png" alt="Smiley face" width="100" height="100" align="right" hspace="10"> -->
-	<li align="justify"> <b>Bacterial cell shape control by nutrient-dependent synthesis of cell division inhibitors</b><br> 
-		   Ojkic N, Banerjee S<br>
-		   <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(21)00295-2"><font color = "#761212">Biophysical Journal 120, 2079 (2021)</font></a><br>
-
-	<li align="justify"> <img src="/assets/img/chlor.png" alt="Smiley face" width="100" height="100" align="right" hspace="10"> 
-	<b>Mechanical feedback promotes bacterial adaptation to antibiotics</b><br> 
-		   Banerjee S*, Lo K, Ojkic N, Stephens R, Scherer NF*, Dinner AR*<br>
-		   <a href="https://www.nature.com/articles/s41567-020-01079-x"><font color = "#761212">Nature Physics 17, 403 (2021)</font></a><br>
-		   <a href="https://www.cmu.edu/mcs/news-events/2021/0104_banerjee-bacteria-antibiotics.html"><font color = "#0000A0">CMU News</font></a></font>|<a href="https://phys.org/news/2021-01-bacteria-resilient-antibiotics.html"><font color = "#0000A0">Phys.org</font></a></font>|<a href="https://www.eurekalert.org/pub_releases/2021-01/cmu-h012921.php"><font color = "#0000A0">EurekAlert!</font></a></font>
-
-	 <li align="justify"><b>Nutrient-dependent trade-offs between ribosomes and division protein synthesis control bacterial cell size and growth</b><br> 
-	 	<img src="/assets/img/proteome.jpg" alt="Smiley face" width="100" height="110" align="right" hspace="10">
-		   Serbanescu D, Ojkic N, Banerjee S<br>
-		   <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(20)31172-4"><font color = "#761212">Cell Reports 32, 108183 (2020)</font></a><br>
-
-
-<li align="justify"> <b>Size-regulated symmetry breaking in reaction-diffusion models of developmental transitions</b><br> 
-		   Scoones JC, Banerjee DS, Banerjee S<br>
-		   <a href="https://www.mdpi.com/2073-4409/9/7/1646"><font color = "#761212">Cells 9, 1646 (2020)</font></a><br>
-
-	<li align="justify"> <b>Adaptive viscoelasticity of epithelial cell junctions: from models to methods</b><br>
-		   Cavanaugh K, Staddon MF, Banerjee S, Gardel ML<br>
-		   <a href="https://www.sciencedirect.com/science/article/pii/S0959437X20300691"><font color = "#761212">Current Opinion in Genetics & Development 63, 86 (2020)</font></a><br>
-	
-		   <li align="justify"> <img src="/assets/img/cover_MBoC.png" alt="Smiley face" width="100" height="115" align="right" hspace="10"> <b>Cell-type specific mechanical response and myosin dynamics during retinal lens development in Drosophila</b><br> 
-		   Blackie L, Walther RF, Staddon MF, Banerjee S*, Pichaud F*<br>
-		   <a href="https://www.molbiolcell.org/doi/10.1091/mbc.E19-09-0523"><font color = "#761212">Molecular Biology of the Cell 31, 1355 (2020)</font></a><br>
-		   <a href="https://www.molbiolcell.org/doi/suppl/10.1091/mboc.2020.31.issue-13/suppl_file/cover.pdf"><font color = "#0000A0">Cover image</font></a></font>
-	
-		<li align="justify"> <b>The Actin Cytoskeleton as an Active Adaptive Material</b><br> 
-		   Banerjee S, Gardel ML, Schwarz US<br>
-		   <a href="https://www.annualreviews.org/doi/10.1146/annurev-conmatphys-031218-013231"><font color = "#761212">Annual Review of Condensed Matter Physics 11, 421 (2020)</font></a><br>
-
-<li align="justify"> <img src="/assets/img/devcell.png" alt="Smiley face" width="100" height="110" align="right" hspace="10"> <b>RhoA mediates epithelial cell shape changes via mechanosensitive endocytosis</b><br> 
-		   Cavanaugh KE, Staddon MF, Munro E, Banerjee S, Gardel ML<br>
-		   <a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(19)31023-8?rss=yes"><font color = "#761212">Developmental Cell 52, 152 (2020)</font></a><br>
-		    <a href="https://www.sciencedirect.com/science/article/pii/S1534580720300010"><font color = "#0000A0">Dev Cell Preview: 'A Nudge or a Shove: Altering Actomyosin Pulse Profiles In Vivo'</font></a></font>
-
-		     <li align="justify"> <b>Single-cell approaches to cell competition: high-throughput imaging, machine learning and simulations</b><br> 
-		   Gradeci D, Bove A, Charras G, Lowe AR, Banerjee S<br>
-		   <a href="https://www.sciencedirect.com/science/article/pii/S1044579X18301780?via%3Dihub"><font color = "#761212">Seminars in Cancer Biology 63, 60-68 (2020)</font></a>
-
-<li align="justify">  <img src="/assets/img/opto.png" alt="Smiley face" width="100" height="90" align="right" hspace="10"> <b>Mechanosensitive junction remodelling promotes robust epithelial morphogenesis</b><br> 
-		   Staddon MF, Cavanaugh KE, Munro EM, Gardel ML, Banerjee S<br> 
-		   <a href="https://www.cell.com/biophysj/fulltext/S0006-3495(19)30814-8"><font color = "#761212">Biophysical Journal 117, 1739 (2019)</font></a><br>
-		   <a href="https://www.youtube.com/watch?v=nSIcyoExtF8"><font color = "#0000A0">Video Highlight</font></a></font>
-
-	 <li align="justify"> <b>Filament nucleation tunes mechanical memory in active polymer networks</b><br> 
-		   Yadav V, Banerjee D, Tabatabai A, Kovar D, Kim T, Banerjee S, Murrell MP<br>
-		   <a href="https://onlinelibrary.wiley.com/doi/10.1002/adfm.201905243"><font color = "#761212">Advanced Functional Materials 29, 1905243 (2019)</font></a><img src="/assets/img/ar.jpg" alt="Smiley face" width="100" height="90" align="right" hspace="10">
-
-	<li align="justify"> <b>Surface-to-volume scaling and aspect ratio preservation in rod-shaped bacteria</b><br> 
-		   Ojkic N, Serbanescu D, Banerjee S<br>
-		   <a href="https://elifesciences.org/articles/47033"><font color = "#761212">eLife 8, e47033 (2019)</font></a><br>
-			
-	   <li align="justify"> <img src="/assets/img/fluidity.png" alt="Smiley face" width="100" height="120" align="right" hspace="10"> <b>Tissue fluidity promotes epithelial wound healing</b><br> 
-	   	Tetley RJ, Staddon MF, Heller D, Hoppe A, Banerjee S, Mao Y <br> <a href="https://www.nature.com/articles/s41567-019-0618-1">
-	   	<font color = "#761212">Nature Physics 15,1195 (2019)</font></a><br>
-
-<!--<img src="/assets/img/arch.png" alt="Smiley face" width="100" height="90" align="right" hspace="10"> -->
-		    
-	     <li align="justify"><b>Wound healing coordinates actin architectures to regulate mechanical work</b><br> 
-		   Ajeti V, Tabatabai AP, Fleszar AJ, Staddon MF, Seara DS, Suarez C, Yousafzai MS, Bi D, Kovar DR, Banerjee S, Murrell MP<br>
-		   <a href="https://www.nature.com/articles/s41567-019-0485-9"><font color = "#761212">Nature Physics <b>15</b>, 696 (2019)</font></a><br><img src="/assets/img/arch.png" alt="Smiley face" width="100" height="90" align="right" hspace="10">
-		   <a href="https://news.yale.edu/2019/04/08/cellular-world-strong-relationships-key-healing-old-wounds"><font color = "#0000A0">Yale News</font></a></font>
-
-		   <li align="justify"> <b>Transcription factories in Igk allelic choice and diversity</b><br> 
-		    Karki S<sup>&sect</sup>, Banerjee S<sup>&sect</sup>, Mclean K, Dinner AR, Clark MR<br>
-		    <a href="https://www.sciencedirect.com/science/article/pii/S0065277618300555"><font color = "#761212">Advances in Immunology <b>141</b>, 33-49 (2019)</font></a>
-
-		   <li align="justify"> <b>Continuum models of collective cell migration</b><br> 
-		   Banerjee S, Marchetti MC<br>
-		   <a href="https://link.springer.com/chapter/10.1007%2F978-3-030-17593-1_4"><font color = "#761212">Cell Migrations: Causes and Functions, Adv Exp Med Biol 1146, pp 45-66 (2019)</font></a>
-
-		   <li align="justify"> <b>Entropy production rate is maximized in non-contractile actomyosin</b><br> 
-	   	Seara DS, Yadav V, Linsmeier I, Tabatabai AP, Oakes PW, Ali Tabei SM, Banerjee S*, Murrell MP* <br>
-		   <a href="https://www.nature.com/articles/s41467-018-07413-5"><font color = "#761212">Nature Communications <b>9</b>, 4948 (2018)</font></a><br>
-		   <font color = "#0000A0">Highlighted in <i>Nature</i> Collection: <a href="https://www.nature.com/collections/hvczfmjfzl"><font color = "#0000A0">Active Matter</font></a></font>
-
-		   <li align="justify"> <img src="/assets/img/wound.png" alt="Smiley face" width="100" height="85" align="right" hspace="10"> <b>
-		Cooperation of dual modes of cell motility promotes epithelial stress relaxation to accelerate wound healing</b><br> 
-		   Staddon MF, Bi D, Tabatabai AP, Ajeti V, Murrell MP, Banerjee S<br>
-		   <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006502"><font color = "#761212">PLoS Computational Biology <b>14(10)</b>, e1006502 (2018)</font></a><br>
-		   <font color = "#0000A0">Featured in PLoS Comput Bio</i>. </font><a href="https://blogs.plos.org/biologue/2018/11/14/predicting-gene-enhancers-optimising-vaccine-dose-and-modelling-wound-healing/?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+plos%2Fblogs%2Fbiologue+%28Blogs+-+Biologue%29"><font color = "#0000A0">Highlighted in PLOS Biologue</i>.</font></a>
-
-		   <li align="justify">  <img src="/assets/img/mboc_cover.jpg" alt="Smiley face" width="100" height="100" align="right" hspace="10"> <b>Force localization modes in dynamic epithelial colonies</b><br> 
-	   	Schaumann EN<sup>&sect</sup>, Staddon MF<sup>&sect</sup>, Gardel ML, Banerjee S<br>
-		   <a href="https://www.molbiolcell.org/doi/10.1091/mbc.E18-05-0336"><font color = "#761212">Molecular Biology of the Cell <b>29</b>, 2835 (2018)</font></a><br>
-		   <font color = "#0000A0">A <i>Highlights from MBoC</i> selection. Cover Article.</font>
-		   
-	   <li align="justify"> <b>Nonequilibrium phase diagrams for actomyosin networks</b><br> 
-		   Freedman SL, Hocky GM, Banerjee S, Dinner AR<br>
-		   <a href="http://pubs.rsc.org/en/content/articlehtml/2018/SM/C8SM00741A"><font color = "#761212">Soft Matter <b>14</b>, 7740 (2018)</font></a>
-	
-	   <li align="justify"> <b>Regulated capture of Vk gene topologically associating domains by transcription factories</b><br> 
-		    Karki S, Kennedy DE, Mclean K, Grzybowski AT, Maienschein-Cline M, Banerjee S, Xu H, Davis E, Mandal M, Labno C, Powers SE, Le Beau MM, Dinner AR, Singh H, Ruthenburg AJ, Clark MR<br>
-		    <a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(18)31224-5"><font color = "#761212">Cell Reports <b>24</b>, 2443 (2018)</font></a>
-		     
-
-	   <li align="justify"> <img src="/assets/img/act.png" alt="Smiley face" width="100" height="95" align="right" hspace="10"> <b>Filament rigidity and connectivity tune the deformation modes of active biopolymer networks</b><br> 
-		   Stam S, Freedman SL, Banerjee S, Weirich KL, Dinner AR, Gardel ML<br>
-		   <a href="http://www.pnas.org/content/114/47/E10037.abstract"><font color = "#761212">Proc. Natl. Acad. Sci. USA <b>114</b>, E10037–E10045 (2017)</font></a><br>
-		   
-	<li align="justify"> <b>Local cellular neighbourhood controls proliferation in cell competition</b><br> 
-		   Bove A<sup>&sect</sup>, Gradeci D<sup>&sect</sup>, Fujita Y, Banerjee S*, Charras G*, Lowe AR* <br>
-		   <a href="http://www.molbiolcell.org/content/28/23/3215.abstract"><font color = "#761212">Molecular Biology of the Cell <b>28</b>, 3215 (2017)</font></a><br>
-
-          <li align="justify"> <b>A versatile framework for simulating the dynamic mechanical structure of cytoskeletal networks</b><br> 
-		  Freedman SL, Banerjee S, Hocky GM, Dinner AR <br>
-		  <a href="http://www.cell.com/biophysj/fulltext/S0006-3495(17)30622-7"><font color = "#761212">Biophysical Journal <b>113</b>, 448 (2017)</font></a><br>
-
-        <li align="justify"> <img src="/assets/img/cc17.png" alt="Smiley face" width="100" height="90" align="right" hspace="10"><b>Biphasic growth dynamics control cell division in <i>Caulobacter crescentus</i></b><br> 
-		Banerjee S, Lo K, Daddysman MK, Selewa A, Kuntz T, Dinner AR, Scherer NF <br>
-		<a href="https://www.nature.com/articles/nmicrobiol2017116"><font color = "#761212">Nature Microbiology <b>2</b>, 17116 (2017)</font></a><br>
-
-	   <li align="justify"> <b>Liquid behavior of cross-linked actin bundles</b><br>
-		   Weirich KL, Banerjee S, Dasbiswas K, Witten TA, Vaikuntanathan S, Gardel ML<br>
-		   <a href="http://www.pnas.org/content/early/2017/02/09/1616133114.abstract"><font color = "#761212">Proc. Natl. Acad. Sci. USA <b>114</b>, 2131 (2017)</font></a>
-		
-
-        <li align="justify"> <img src="/assets/img/mm.jpg" alt="Smiley face" width="100" height="90" align="right" hspace="10"> <b>Disordered actomyosin networks are sufficient to produce cooperative and telescopic contractility</b><br>
-		Linsmeier I, Banerjee S, Oakes PW, Jung W, Kim TY, Murrell MP<br>
-		<a href="http://www.nature.com/ncomms/2016/160825/ncomms12615/full/ncomms12615.html"><font color = "#761212">Nature Communications <b>7</b>, 12615 (2016)</font></a><br>
-        <font color = "#0000A0">Highlighted in <i>Nature</i> Collection: <a href="https://www.nature.com/collections/hvczfmjfzl"><font color = "#0000A0">Active Matter</font></a></font>
-
-        
-	   <li align="justify"> <b>Cellular contraction and polarization drive collective cellular motions</b><br> 
-		   Notbohm J<sup>&sect</sup>, Banerjee S<sup>&sect</sup>, Utuje KJC, Gweon B, Jang H, Park Y, Shin J, Butler JP, Fredberg JJ, Marchetti MC <br>
-		    <a href="http://www.cell.com/biophysj/abstract/S0006-3495(16)30301-0"><font color = "#761212">Biophysical Journal <b>110</b>, 2729 (2016)</font></a><br> 
-
- 	<li align="justify"> <b>Structural basis for oligomerization and glycosaminoglycan binding of CCL5 and CCL3</b><br>
- 		Liang WG, Triandafillou C, Hwang DY, Zulueta MML, Banerjee S, Dinner AR, Hung SC, Tang WJ <br>
-		<a href="http://www.pnas.org/content/early/2016/04/15/1523981113.short"><font color = "#761212">Proc. Natl. Acad. Sci. USA <b>113</b>, 5000 (2016)</font></a><br>
-		
-
-	   <li align="justify"> <b>Shape dynamics of growing cell walls</b><br>
-		   Banerjee S, Scherer NF, Dinner AR <br>
-		     <a href="http://pubs.rsc.org/en/content/articlelanding/2016/sm/c5sm02991k#!divAbstract"><font color = "#761212"> Soft Matter <b>12</b>, 3442 (2016)</font></a><br>
-
-
-	   <li align="justify"> <img src="/assets/img/waves.png" alt="Smiley face" width="100" height="95" align="right" hspace="10"> <b>Propagating stress waves during epithelial expansion</b> <br>
-		   Banerjee S*, Utuje KJC, Marchetti MC* <br>
-		    <a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.228101"><font color = "#761212">Physical Review Letters <b>114</b>, 228101 (2015)</font></a><br>
-		   <font color = "#0000A0">Featured in Editor's suggestions</font>
-  	
-  	<li align="justify"> <b>Intergenerational continuity of cell shape dynamics in <i>Caulobacter crescentus</i></b><br> 
-  		Wright CS<sup>&sect</sup>, Banerjee S<sup>&sect</sup>, Iyer-Biswas S, Crosson S, Dinner AR, Scherer NF<br>
-		<a href="http://www.nature.com/srep/2015/150317/srep09155/full/srep09155.html?WT.ec_id=SREP-631-20150324"><font color = "#761212">Scientific Reports <b>5</b>, 9155 (2015)</font></a><br>  
-
-  	<li align="justify"> <b>Active Viscoelastic Matter: from bacterial drag reduction to turbulent solids</b><br> 
-		Hemmingway EJ, Maitra A, Banerjee S, Marchetti MC, Ramaswamy S, Fielding SM, Cates ME <br>
-		<a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.098302"><font color = "#761212">Physical Review Letters <b>114</b>, 098302 (2015)</font></a><br>
-  
-  
-	   <li align="justify"><img src="/assets/img/BPJ2014.tif.jpg" alt="Smiley face" width="100" height="120" align="right" hspace="10"><b>Geometry regulates traction stresses in adherent cells</b><br> 
-		   Oakes PW, Banerjee S, Marchetti MC, Gardel ML <br>
-		    <a href="http://www.cell.com/biophysj/abstract/S0006-3495(14)00717-6"><font color = "#761212">Biophysical Journal <b>107</b>, 825 (2014)</font></a><br> 
-		   <font color = "#0000A0">Featured in <a href="http://www.cell.com/biophysj/abstract/S0006-3495(14)00718-8"><font color = "#0000A0">New and Notable</font></a></font>
-	
-	   <li align="justify"><b>Optimal shapes and stresses of adherent cells on patterned substrates</b><br>
-		   Banerjee S, Sknepnek R, Marchetti MC<br>
-		   <a href="http://pubs.rsc.org/en/content/articlelanding/2014/sm/c3sm52647j#!divAbstract"><font color = "#761212">Soft Matter <b>10</b>, 2424 (2014)</font></a>
-	
-
-	   <li align="justify"> <img src="/assets/img/shapes.png" alt="Smiley face" width="100" height="110" align="right" hspace="10"> <b>Polymorphism and bistability in adherent cells</b><br>
-		   Banerjee S, Giomi L<br>
-		   <a href="http://pubs.rsc.org/en/content/articlelanding/2013/sm/c3sm27791g#!divAbstract"><font color = "#761212">Soft Matter <b>9</b>, 5251 (2013)</font></a><br>
-	
-	   <li align="justify"> <b>Controlling cell-matrix traction forces by extracellular geometry</b><br> 
-	   	 Banerjee S, Marchetti MC<br>
-		   <a href="http://iopscience.iop.org/1367-2630/15/3/035015"><font color = "#761212">New Journal of Physics <b>15</b>, 035015 (2013)</font></a><br>
-		   <font color = "#0000A0">Featured in <a href="http://iopscience.iop.org/1367-2630/page/highlights-of-2013"><font color = "#0000A0">Highlights of 2013</font></a></font>
-	
-	<li align="justify"><img src="/assets/img/3cell.png" alt="Smiley face" width="100" height="100" align="right" hspace="10"><b>Cadherin-based intercellular adhesions organize epithelial cell-matrix traction forces</b> <br>
-		 Mertz AF, Che Y, Banerjee S, Goldstein JM, Rosowski KA, Revilla SF, Niessen CM, Marchetti MC, Dufresne ER, Horsley V<br>
-		<a href="http://www.pnas.org/content/110/3/842.short"><font color = "#761212">Proc. Natl. Acad. Sci. USA <b>110</b>, 842 (2013)</font></a> <br>
-		  <a href="http://f1000.com/prime/717968875"><font color = "#0000A0">Recommended by F1000Prime</font></a>
-	
-
-	<li align="justify"> <b>Contractile stresses in cohesive cell layers on finite-thickness substrates</b><br>
-		Banerjee S, Marchetti MC<br>
-		<a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.109.108101"><font color = "#761212">Physical Review Letters <b>109</b>, 108101 (2012)</font></a><br>
-		
-	
-	   <li align="justify">  <b>Heterogeneous drying stresses in <i>stratum corneum</i></b><br> 
-	   	 German GK, Engl WC, Pashkovski E, Banerjee S, Xu Y, Mertz AF, Hyland C, Dufresne ER<br>
-		   <a href="http://www.cell.com/biophysj/abstract/S0006-3495(12)00519-X"><font color = "#761212">Biophysical Journal <b>102</b>, 2424 (2012)</font></a><br>
-		  
-	
-	   <li align="justify"> <img src="/assets/img/colony.png" alt="Smiley face" width="100" height="90" align="right" hspace="10"> <b>Scaling of traction forces with the size of cohesive cell colonies</b><br> 
-	   	 Mertz AF, Banerjee S, Che Y, German GK, Xu Y, Hyland C, Marchetti MC, Horsley V, Dufresne ER<br>
-		   <a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.198101"><font color = "#761212">Physical Review Letters <b>108</b>, 198101 (2012)</font></a><br>
-		   <font color = "#0000A0">Featured in Editors' suggestions</font>
-	
-	
-	<li align="justify"> <b>Generic phases of cross-linked active gels: Relaxation, oscillation and contractility</b><br>
-		Banerjee S, Liverpool TB, Marchetti MC<br>
-		<a href="http://iopscience.iop.org/0295-5075/96/5/58004"><font color = "#761212">Europhysics Letters <b>96</b>, 58004 (2011)</font></a><br>
-		
-	
-	   <li align="justify"> <b>Substrate rigidity deforms and polarizes active gels</b><br> 
-	   	Banerjee S, Marchetti MC<br>
-		   <a href="http://iopscience.iop.org/0295-5075/96/2/28003"><font color = "#761212">Europhysics Letters <b>96</b>, 28003 (2011)</font></a><br>
-		   
-	
-	   <li align="justify">  <b>Motor-driven dynamics of cytoskeletal filaments in motility assays</b><br> 
-	   	Banerjee S, Marchetti MC, Müller-Nedebock KK<br>
-		   <a href="http://journals.aps.org/pre/abstract/10.1103/PhysRevE.84.011914"><font color = "#761212">Physical Review E <b>84</b>, 011914 (2011)</font></a><br>
-		   
-	
-	   <li align="justify"> <b>Instabilities and oscillations in isotropic active gels</b><br> 
-	   	Banerjee S, Marchetti MC<br>
-		   <a href="http://pubs.rsc.org/en/content/articlelanding/2011/sm/c0sm00494d#!divAbstract"><font color = "#761212">Soft Matter <b>7</b>, 463 (2011)</font></a><br></ul>
-</ul>
-
-<!--		   <b><font color = "#1358C1">Review articles</b></font>
-	<ul style="list-style-type:square; padding-left: 1.2em;">  
-	
-    </ul> <li align="justify"> <b>Continuum models of collective cell migration</b><br> 
-		   Banerjee S*, Marchetti MC<br>
-		   <a href="https://arxiv.org/abs/1805.06531"><font color = "#761212">Adv Exp Med Biol, Cell Migrations: Causes and Functions, in press (2019)</font></a>
-
-		      
-
-    -->
-	<sup>&sect</sup>equal authorship, *co-corresponding authors <br> <br>
-	  
- 	
-	
-	<!--
-	<font color = "#1358C1"><b>PhD Thesis</b></font> <br>
-	<li align="justify"> <b>S. Banerjee</b>, "Cell Mechanics: From cytoskeletal dynamics to tissue-scale mechanical phenomena”, <a href="http://surface.syr.edu/phy_etd/131/"> <font color = "#761212">Physics - Dissertations, Paper 131, Syracuse University (2013)</font></a>. <a href=https://www.aps.org/units/dbp/awards/recipient.cfm?first_nm=Shiladitya&last_nm=Banerjee&year=2013><font color = "#0000A0">APS DBIO award</font></a>.
-	<br><br>
-
-    <p><a href="https://scholar.google.com/citations?user=-GropNMAAAAJ&hl=en"><font color = "#761212">Google Scholar Citations</font></a> </p>
-   	<p><a href="https://www.researchgate.net/profile/Shiladitya_Banerjee"><font color = "#761212">ResearchGate</font></a></p> 
-
-   	<p>	<a href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate"> <img border="0" alt="Google Scholar Citations" src="/assets/img/Google_Scholar_logo.png" width="110" height="44"></a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-   <a href="https://www.researchgate.net/profile/Shiladitya_Banerjee"> <img border="0" alt="ResearchGate" src="/assets/img/RG.png" width="53" height="53"></a>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-		<a href="https://twitter.com/ShiloBanerji"> <img border="0" alt="Twitter" src="/assets/img/twitter.jpg" width="53" height="53"></a>
-   	-->
-   
+<div class="page-hero">
+  <div class="page-hero-left">
+    <div class="section-label">— PUBLICATIONS</div>
+    <h1>Papers &amp; <em>preprints.</em></h1>
   </div>
-  
-  
-</section>
+  <a class="scholar-link" href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate" target="_blank" rel="noopener">Google Scholar ↗</a>
+</div>
 
-<footer>
-  <div class="content-wrap">
-    <nav>
-        <a href="http://shiladitya-banerjee.com">home</a>
-        <a href=/people>people</a>
-        <a href=/res>research</a>
-        <a href=/pub>publications</a>
-        <a href=/teaching>links</a>
-        <a href="http://shiladitya-banerjee.com#contact">contact</a>
-    </nav>
+<div class="pub-content">
 
-    <p class="copyright">&copy Shiladitya Banerjee 2020</p>
+  <!-- 2026 -->
+  <div class="year-group">
+    <div class="year-label"><span>2026</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PRX LIFE · 4, 023015 · 2026</div>
+        <div class="pub-title"><a href="https://doi.org/10.1103/5zbg-8vll">Multi-timescale adaptation and emergent learning in single bacterial cells</a></div>
+        <div class="pub-authors">Kratz JC, Wang H, Si F, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CURRENT BIOLOGY · 36, 1908 · 2026</div>
+        <div class="pub-title"><a href="https://www.cell.com/current-biology/fulltext/S0960-9822(26)00255-1">Mechanosensitive feedback organizes cell shape and motion during hindbrain neuropore morphogenesis</a></div>
+        <div class="pub-authors">Perez-Verdugo F, Maniou E, Galea G, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout press"><a href="https://research.gatech.edu/physics-brain-development-how-cells-pull-together-form-neural-tube">GT News</a></span>
+          <span class="callout press"><a href="https://phys.org/news/2026-04-physics-brain-cells-neural-tube.html">Phys.org</a></span>
+          <span class="callout press"><a href="https://www.eurekalert.org/news-releases/1124961">EurekAlert!</a></span>
+          <span class="callout press"><a href="https://neurosciencenews.com/physics-neural-tube-closure-30564/">Neuroscience News</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYS. REV. RESEARCH · 8, L012014 · 2026 · LETTER</div>
+        <div class="pub-title"><a href="https://journals.aps.org/prresearch/abstract/10.1103/jgll-wsvt">Proliferation symmetry breaking in growing tissues</a></div>
+        <div class="pub-authors">Li X, Datta A, Banerjee S</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2025 -->
+  <div class="year-group">
+    <div class="year-label"><span>2025</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIORXIV · 694921 · 2025 · PREPRINT</div>
+        <div class="pub-title"><a href="https://www.biorxiv.org/content/10.64898/2025.12.17.694921v1.abstract">Learning Epithelial Elasticity via Local Tension Remodeling</a></div>
+        <div class="pub-authors">Arzash S, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIORXIV · 689767 · 2025 · PREPRINT</div>
+        <div class="pub-title"><a href="https://www.biorxiv.org/content/10.1101/2025.11.21.689767v1">Reinforcement learning for adaptive control of phenotypically heterogeneous bacterial populations</a></div>
+        <div class="pub-authors">Kratz JC, Wen Z, Banerjee S, Carja O</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIORXIV · 669779 · 2025 · PREPRINT</div>
+        <div class="pub-title"><a href="https://www.biorxiv.org/content/10.1101/2025.08.11.669779v1">Cell Geometry Limits Bacterial Metabolic Efficiency</a></div>
+        <div class="pub-authors">Cylke A, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">J. ROYAL SOCIETY INTERFACE · 22, 20250638 · 2025</div>
+        <div class="pub-title"><a href="https://royalsocietypublishing.org/doi/10.1098/rsif.2025.0638">Physical traits of supercompetitors in cell competition</a></div>
+        <div class="pub-authors">Carpenter LC, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYS. REV. RESEARCH · 7, 033123 · 2025</div>
+        <div class="pub-title"><a href="https://journals.aps.org/prresearch/abstract/10.1103/24rx-sxcw">Gene expression cycles drive non-exponential bacterial growth</a></div>
+        <div class="pub-authors">Cylke A, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CURRENT OPINION IN CELL BIOLOGY · 95, 102533 · 2025</div>
+        <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/abs/pii/S0955067425000717">Design principles and feedback mechanisms in organelle size control</a></div>
+        <div class="pub-authors">Banerjee DS, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">eLIFE · 12, RP92203 · 2025</div>
+        <div class="pub-title"><a href="https://doi.org/10.7554/eLife.92203.3">Catalytic growth in a shared enzyme pool ensures robust control of centrosome size</a></div>
+        <div class="pub-authors">Banerjee DS, Banerjee S</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2024 -->
+  <div class="year-group">
+    <div class="year-label"><span>2024</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">eLIFE · 13, RP101777 · 2024</div>
+        <div class="pub-title"><a href="https://elifesciences.org/reviewed-preprints/101777">Interplay of condensate material properties and chromatin heterogeneity governs nuclear condensate ripening</a></div>
+        <div class="pub-authors">Banerjee DS, Chigumira T, Lackner RM, Kratz JC, Chenoweth DM, Banerjee S, Zhang H</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PROC. ROYAL SOCIETY A · 480, 20240219 · 2024</div>
+        <div class="pub-title"><a href="https://royalsocietypublishing.org/doi/10.1098/rspa.2024.0219">Energy allocation theory for bacterial growth control in and out of steady state</a></div>
+        <div class="pub-authors">Cylke A, Serbanescu D, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CURRENT BIOLOGY · 34, 3201 · 2024</div>
+        <div class="pub-title"><a href="https://www.cell.com/current-biology/abstract/S0960-9822(24)00821-2">Mechanical and biochemical feedback combine to generate complex contractile oscillations in cytokinesis</a></div>
+        <div class="pub-authors">Werner ME, Ray DD, Breen C, Staddon MF, Jug F, Banerjee S, Maddox AS</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://www.cell.com/current-biology/abstract/S0960-9822(24)00749-8">CB Dispatch: 'Actomyosin cortex: Inherently oscillatory?'</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/WernerCB2024.png" alt="Cover"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">LIFE SCIENCE ALLIANCE · 7, e202402591 · 2024</div>
+        <div class="pub-title"><a href="https://www.life-science-alliance.org/content/7/8/e202402591">Differential growth regulates asymmetric size partitioning in Caulobacter crescentus</a></div>
+        <div class="pub-authors">Ng TW, Ojkic N, Serbanescu D, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">COMMUNICATIONS PHYSICS · 7, 167 · 2024</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s42005-024-01661-2">Excitable dynamics driven by mechanical feedback in biological tissues</a></div>
+        <div class="pub-authors">Perez-Verdugo F, Banks S, Banerjee S</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/CommsPhys2024.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CYTOSKELETON · 81, 409 · 2024</div>
+        <div class="pub-title"><a href="https://onlinelibrary.wiley.com/doi/10.1002/cm.21877">Growth-induced collective bending and kinetic trapping of cytoskeletal filaments</a></div>
+        <div class="pub-authors">Banerjee DS, Freedman SL, Murrell MP, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://onlinelibrary.wiley.com/doi/10.1002/cm.21906">Cover image</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/cyto.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 123, 909 · 2024</div>
+        <div class="pub-title"><a href="https://www.cell.com/biophysj/abstract/S0006-3495(24)00167-X">Mechanical control of cell proliferation patterns in growing epithelial monolayers</a></div>
+        <div class="pub-authors">Carpenter LC, Perez-Verdugo F, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PRX LIFE · 2, 013010 · 2024</div>
+        <div class="pub-title"><a href="https://journals.aps.org/prxlife/accepted/b507aI0dXae1f30220e613b5f467e8be058ca2fec">Gene expression tradeoffs determine bacterial survival and adaptation to antibiotic stress</a></div>
+        <div class="pub-authors">Kratz JC, Banerjee S</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/prxlife24.png" alt="Figure"></div>
+    </div>
+  </div>
+
+  <!-- 2023 -->
+  <div class="year-group">
+    <div class="year-label"><span>2023</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PRX LIFE · 1, 023006 · 2023</div>
+        <div class="pub-title"><a href="https://journals.aps.org/prxlife/abstract/10.1103/PRXLife.1.023006">Tension remodeling regulates topological transitions in epithelial tissues</a></div>
+        <div class="pub-authors">Perez-Verdugo F, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://physics.aps.org/articles/v16/s169">Featured in APS Physics Magazine</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/PRXf.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">COMMUNICATIONS BIOLOGY · 6, 486 · 2023</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s42003-023-04865-4">Dynamic proteome trade-offs regulate bacterial cell size and growth in fluctuating nutrient environments</a></div>
+        <div class="pub-authors">Kratz JC, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">COMMUNICATIONS BIOLOGY · 6, 325 · 2023</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s42003-023-04684-7">Membrane tension induces F-actin reorganization and flow in a biomimetic model cortex</a></div>
+        <div class="pub-authors">Sakamoto R, Banerjee DS, Yadav V, Chen S, Gardel ML, Sykes C, Banerjee S, Murrell MP</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 122, 1254 · 2023</div>
+        <div class="pub-title"><a href="https://www.cell.com/biophysj/fulltext/S0006-3495(23)00121-2">Super-exponential growth and stochastic size dynamics in rod-like bacteria</a></div>
+        <div class="pub-authors">Cylke A, Banerjee S</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2022 -->
+  <div class="year-group">
+    <div class="year-label"><span>2022</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 18, 7877 · 2022</div>
+        <div class="pub-title"><a href="https://pubs.rsc.org/en/content/articlelanding/2022/sm/d2sm00757f">Interplay between substrate rigidity and tissue fluidity regulates cell monolayer spreading</a></div>
+        <div class="pub-authors">Staddon MF, Murrell MP, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://pubs.rsc.org/en/journals/articlecollectionlanding?sercode=sm&themeid=7d26001d-2d1a-4abb-8fa8-498605a9da69">Soft Matter Emerging Investigators</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/aggregate.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOCHEMICAL SOCIETY TRANSACTIONS · 50, 1269 · 2022</div>
+        <div class="pub-title"><a href="https://portlandpress.com/biochemsoctrans/article-abstract/doi/10.1042/BST20210894/231752/Effects-of-antibiotics-on-bacterial-cell">Effects of antibiotics on bacterial cell morphology and their physiological origins</a></div>
+        <div class="pub-authors">Cylke C, Si F, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW X · 12, 031027 · 2022</div>
+        <div class="pub-title"><a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.12.031027">Cell-Matrix Elastocapillary Interactions Drive Pressure-Based Wetting of Cell Aggregates</a></div>
+        <div class="pub-authors">Yousafzai MS, Yadav V, Amiri S, Staddon MF, Tabatabai AP, Errami Y, Jaspard G, Banerjee S, Murrell MP</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PLOS COMPUTATIONAL BIOLOGY · 18, e1010253 · 2022</div>
+        <div class="pub-title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010253">Size regulation of multiple organelles competing for a limiting subunit pool</a></div>
+        <div class="pub-authors">Banerjee DS, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 121, 2436 · 2022</div>
+        <div class="pub-title"><a href="http://dx.doi.org/10.1016/j.bpj.2022.05.014">Emergence and maintenance of variable-length actin filaments in a limiting pool of building blocks</a></div>
+        <div class="pub-authors">Banerjee DS, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">mBIO · 13, e00659-22 · 2022</div>
+        <div class="pub-title"><a href="https://journals.asm.org/doi/10.1128/mbio.00659-22">Antibiotic resistance via bacterial cell shape-shifting</a></div>
+        <div class="pub-authors">Ojkic N, Serbanescu D, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout">Editor's Pick</span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/antibiotic.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CURRENT BIOLOGY · 32, 1986 · 2022</div>
+        <div class="pub-title"><a href="https://www.cell.com/current-biology/fulltext/S0960-9822(22)00419-5">Force-dependent intercellular adhesion strengthening underlies asymmetric adherens junction contraction</a></div>
+        <div class="pub-authors">Cavanaugh K, Staddon MF, Chmiel TA, Harmon RM, Budnar S, Yap AS, Banerjee S, Gardel ML</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PLOS COMPUTATIONAL BIOLOGY · 18, e1009981 · 2022</div>
+        <div class="pub-title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009981">Pulsatile contractions and pattern formation in excitable actomyosin cortex</a></div>
+        <div class="pub-authors">Staddon MF, Munro EM, Banerjee S</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/pulsatile.png" alt="Figure"></div>
+    </div>
+  </div>
+
+  <!-- 2021 -->
+  <div class="year-group">
+    <div class="year-label"><span>2021</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">THE FEBS JOURNAL · 2021</div>
+        <div class="pub-title"><a href="https://febs.onlinelibrary.wiley.com/doi/10.1111/febs.16234">Cellular resource allocation strategies for cell size and shape control in bacteria</a></div>
+        <div class="pub-authors">Serbanescu D, Ojkic N, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">eLIFE · 10, e61011 · 2021</div>
+        <div class="pub-title"><a href="https://elifesciences.org/articles/61011">Cell-scale biophysical determinants of cell competition in epithelia</a></div>
+        <div class="pub-authors">Gradeci D, Bove A, Vallardi G, Lowe AR*, Banerjee S*, Charras G*</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://www.cell.com/current-biology/ppt/S0960-9822(21)00719-3.ppt">CB Dispatch: 'Cell competition: Bridging the scales'</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/comp.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PNAS · 118, e2023163118 · 2021</div>
+        <div class="pub-title"><a href="https://www.pnas.org/content/118/19/e2023163118">Hindbrain neuropore tissue geometry determines asymmetric cell-mediated closure dynamics in mouse embryos</a></div>
+        <div class="pub-authors">Maniou E, Staddon MF, Marshall A, Greene A, Copp A, Banerjee S*, Galea G*</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/hnp.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 120, 2079 · 2021</div>
+        <div class="pub-title"><a href="https://www.cell.com/biophysj/fulltext/S0006-3495(21)00295-2">Bacterial cell shape control by nutrient-dependent synthesis of cell division inhibitors</a></div>
+        <div class="pub-authors">Ojkic N, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE PHYSICS · 17, 403 · 2021</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s41567-020-01079-x">Mechanical feedback promotes bacterial adaptation to antibiotics</a></div>
+        <div class="pub-authors">Banerjee S*, Lo K, Ojkic N, Stephens R, Scherer NF*, Dinner AR*</div>
+        <div class="pub-callouts">
+          <span class="callout press"><a href="https://www.cmu.edu/mcs/news-events/2021/0104_banerjee-bacteria-antibiotics.html">CMU News</a></span>
+          <span class="callout press"><a href="https://phys.org/news/2021-01-bacteria-resilient-antibiotics.html">Phys.org</a></span>
+          <span class="callout press"><a href="https://www.eurekalert.org/pub_releases/2021-01/cmu-h012921.php">EurekAlert!</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/chlor.png" alt="Figure"></div>
+    </div>
+  </div>
+
+  <!-- 2020 -->
+  <div class="year-group">
+    <div class="year-label"><span>2020</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CELL REPORTS · 32, 108183 · 2020</div>
+        <div class="pub-title"><a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(20)31172-4">Nutrient-dependent trade-offs between ribosomes and division protein synthesis control bacterial cell size and growth</a></div>
+        <div class="pub-authors">Serbanescu D, Ojkic N, Banerjee S</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/proteome.jpg" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CELLS · 9, 1646 · 2020</div>
+        <div class="pub-title"><a href="https://www.mdpi.com/2073-4409/9/7/1646">Size-regulated symmetry breaking in reaction-diffusion models of developmental transitions</a></div>
+        <div class="pub-authors">Scoones JC, Banerjee DS, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CURRENT OPINION IN GENETICS &amp; DEVELOPMENT · 63, 86 · 2020</div>
+        <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S0959437X20300691">Adaptive viscoelasticity of epithelial cell junctions: from models to methods</a></div>
+        <div class="pub-authors">Cavanaugh K, Staddon MF, Banerjee S, Gardel ML</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">MOLECULAR BIOLOGY OF THE CELL · 31, 1355 · 2020</div>
+        <div class="pub-title"><a href="https://www.molbiolcell.org/doi/10.1091/mbc.E19-09-0523">Cell-type specific mechanical response and myosin dynamics during retinal lens development in Drosophila</a></div>
+        <div class="pub-authors">Blackie L, Walther RF, Staddon MF, Banerjee S*, Pichaud F*</div>
+        <div class="pub-callouts">
+          <span class="callout">Cover Article &amp; Highlights from MBoC</span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/cover_MBoC.png" alt="Cover"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">ANNUAL REVIEW OF CONDENSED MATTER PHYSICS · 11, 421 · 2020</div>
+        <div class="pub-title"><a href="https://www.annualreviews.org/doi/10.1146/annurev-conmatphys-031218-013231">The Actin Cytoskeleton as an Active Adaptive Material</a></div>
+        <div class="pub-authors">Banerjee S, Gardel ML, Schwarz US</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">DEVELOPMENTAL CELL · 52, 152 · 2020</div>
+        <div class="pub-title"><a href="https://www.cell.com/developmental-cell/fulltext/S1534-5807(19)31023-8">RhoA mediates epithelial cell shape changes via mechanosensitive endocytosis</a></div>
+        <div class="pub-authors">Cavanaugh KE, Staddon MF, Munro E, Banerjee S, Gardel ML</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://www.sciencedirect.com/science/article/pii/S1534580720300010">Dev Cell Preview: 'A Nudge or a Shove'</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/devcell.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SEMINARS IN CANCER BIOLOGY · 63, 60 · 2020</div>
+        <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S1044579X18301780">Single-cell approaches to cell competition: high-throughput imaging, machine learning and simulations</a></div>
+        <div class="pub-authors">Gradeci D, Bove A, Charras G, Lowe AR, Banerjee S</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2019 -->
+  <div class="year-group">
+    <div class="year-label"><span>2019</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 117, 1739 · 2019</div>
+        <div class="pub-title"><a href="https://www.cell.com/biophysj/fulltext/S0006-3495(19)30814-8">Mechanosensitive junction remodelling promotes robust epithelial morphogenesis</a></div>
+        <div class="pub-authors">Staddon MF, Cavanaugh KE, Munro EM, Gardel ML, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout press"><a href="https://www.youtube.com/watch?v=nSIcyoExtF8">Video Highlight</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">ADVANCED FUNCTIONAL MATERIALS · 29, 1905243 · 2019</div>
+        <div class="pub-title"><a href="https://onlinelibrary.wiley.com/doi/10.1002/adfm.201905243">Filament nucleation tunes mechanical memory in active polymer networks</a></div>
+        <div class="pub-authors">Yadav V, Banerjee D, Tabatabai A, Kovar D, Kim T, Banerjee S, Murrell MP</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">eLIFE · 8, e47033 · 2019</div>
+        <div class="pub-title"><a href="https://elifesciences.org/articles/47033">Surface-to-volume scaling and aspect ratio preservation in rod-shaped bacteria</a></div>
+        <div class="pub-authors">Ojkic N, Serbanescu D, Banerjee S</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE PHYSICS · 15, 1195 · 2019</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s41567-019-0618-1">Tissue fluidity promotes epithelial wound healing</a></div>
+        <div class="pub-authors">Tetley RJ, Staddon MF, Heller D, Hoppe A, Banerjee S, Mao Y</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/fluidity.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE PHYSICS · 15, 696 · 2019</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s41567-019-0485-9">Wound healing coordinates actin architectures to regulate mechanical work</a></div>
+        <div class="pub-authors">Ajeti V, Tabatabai AP, Fleszar AJ, Staddon MF, Seara DS, Suarez C, Yousafzai MS, Bi D, Kovar DR, Banerjee S, Murrell MP</div>
+        <div class="pub-callouts">
+          <span class="callout press"><a href="https://news.yale.edu/2019/04/08/cellular-world-strong-relationships-key-healing-old-wounds">Yale News</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/arch.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">ADVANCES IN IMMUNOLOGY · 141, 33 · 2019</div>
+        <div class="pub-title"><a href="https://www.sciencedirect.com/science/article/pii/S0065277618300555">Transcription factories in Igk allelic choice and diversity</a></div>
+        <div class="pub-authors">Karki S, Banerjee S, Mclean K, Dinner AR, Clark MR</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">ADV. EXP. MED. BIOL. · 1146, 45 · 2019</div>
+        <div class="pub-title"><a href="https://link.springer.com/chapter/10.1007%2F978-3-030-17593-1_4">Continuum models of collective cell migration</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2018 -->
+  <div class="year-group">
+    <div class="year-label"><span>2018</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE COMMUNICATIONS · 9, 4948 · 2018</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/s41467-018-07413-5">Entropy production rate is maximized in non-contractile actomyosin</a></div>
+        <div class="pub-authors">Seara DS, Yadav V, Linsmeier I, Tabatabai AP, Oakes PW, Ali Tabei SM, Banerjee S*, Murrell MP*</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://www.nature.com/collections/hvczfmjfzl">Nature Collection: Active Matter</a></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PLOS COMPUTATIONAL BIOLOGY · 14, e1006502 · 2018</div>
+        <div class="pub-title"><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006502">Cooperation of dual modes of cell motility promotes epithelial stress relaxation to accelerate wound healing</a></div>
+        <div class="pub-authors">Staddon MF, Bi D, Tabatabai AP, Ajeti V, Murrell MP, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://blogs.plos.org/biologue/2018/11/14/predicting-gene-enhancers-optimising-vaccine-dose-and-modelling-wound-healing/">Highlighted in PLOS Biologue</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/wound.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">MOLECULAR BIOLOGY OF THE CELL · 29, 2835 · 2018</div>
+        <div class="pub-title"><a href="https://www.molbiolcell.org/doi/10.1091/mbc.E18-05-0336">Force localization modes in dynamic epithelial colonies</a></div>
+        <div class="pub-authors">Schaumann EN, Staddon MF, Gardel ML, Banerjee S</div>
+        <div class="pub-callouts">
+          <span class="callout">Highlights from MBoC · Cover Article</span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/mboc_cover.jpg" alt="Cover"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 14, 7740 · 2018</div>
+        <div class="pub-title"><a href="http://pubs.rsc.org/en/content/articlehtml/2018/SM/C8SM00741A">Nonequilibrium phase diagrams for actomyosin networks</a></div>
+        <div class="pub-authors">Freedman SL, Hocky GM, Banerjee S, Dinner AR</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">CELL REPORTS · 24, 2443 · 2018</div>
+        <div class="pub-title"><a href="https://www.cell.com/cell-reports/fulltext/S2211-1247(18)31224-5">Regulated capture of Vk gene topologically associating domains by transcription factories</a></div>
+        <div class="pub-authors">Karki S, Kennedy DE, Mclean K, et al.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2017 -->
+  <div class="year-group">
+    <div class="year-label"><span>2017</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PNAS · 114, E10037 · 2017</div>
+        <div class="pub-title"><a href="http://www.pnas.org/content/114/47/E10037.abstract">Filament rigidity and connectivity tune the deformation modes of active biopolymer networks</a></div>
+        <div class="pub-authors">Stam S, Freedman SL, Banerjee S, Weirich KL, Dinner AR, Gardel ML</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/act.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">MOLECULAR BIOLOGY OF THE CELL · 28, 3215 · 2017</div>
+        <div class="pub-title"><a href="http://www.molbiolcell.org/content/28/23/3215.abstract">Local cellular neighbourhood controls proliferation in cell competition</a></div>
+        <div class="pub-authors">Bove A, Gradeci D, Fujita Y, Banerjee S*, Charras G*, Lowe AR*</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 113, 448 · 2017</div>
+        <div class="pub-title"><a href="http://www.cell.com/biophysj/fulltext/S0006-3495(17)30622-7">A versatile framework for simulating the dynamic mechanical structure of cytoskeletal networks</a></div>
+        <div class="pub-authors">Freedman SL, Banerjee S, Hocky GM, Dinner AR</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE MICROBIOLOGY · 2, 17116 · 2017</div>
+        <div class="pub-title"><a href="https://www.nature.com/articles/nmicrobiol2017116">Biphasic growth dynamics control cell division in <em>Caulobacter crescentus</em></a></div>
+        <div class="pub-authors">Banerjee S, Lo K, Daddysman MK, Selewa A, Kuntz T, Dinner AR, Scherer NF</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/cc17.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PNAS · 114, 2131 · 2017</div>
+        <div class="pub-title"><a href="http://www.pnas.org/content/early/2017/02/09/1616133114.abstract">Liquid behavior of cross-linked actin bundles</a></div>
+        <div class="pub-authors">Weirich KL, Banerjee S, Dasbiswas K, Witten TA, Vaikuntanathan S, Gardel ML</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2016 -->
+  <div class="year-group">
+    <div class="year-label"><span>2016</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NATURE COMMUNICATIONS · 7, 12615 · 2016</div>
+        <div class="pub-title"><a href="http://www.nature.com/ncomms/2016/160825/ncomms12615/full/ncomms12615.html">Disordered actomyosin networks are sufficient to produce cooperative and telescopic contractility</a></div>
+        <div class="pub-authors">Linsmeier I, Banerjee S, Oakes PW, Jung W, Kim TY, Murrell MP</div>
+        <div class="pub-callouts">
+          <span class="callout"><a href="https://www.nature.com/collections/hvczfmjfzl">Nature Collection: Active Matter</a></span>
+        </div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/mm.jpg" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 110, 2729 · 2016</div>
+        <div class="pub-title"><a href="http://www.cell.com/biophysj/abstract/S0006-3495(16)30301-0">Cellular contraction and polarization drive collective cellular motions</a></div>
+        <div class="pub-authors">Notbohm J, Banerjee S, Utuje KJC, Gweon B, Jang H, Park Y, Shin J, Butler JP, Fredberg JJ, Marchetti MC</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PNAS · 113, 5000 · 2016</div>
+        <div class="pub-title"><a href="http://www.pnas.org/content/early/2016/04/15/1523981113.short">Structural basis for oligomerization and glycosaminoglycan binding of CCL5 and CCL3</a></div>
+        <div class="pub-authors">Liang WG, Triandafillou C, Hwang DY, Zulueta MML, Banerjee S, Dinner AR, Hung SC, Tang WJ</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 12, 3442 · 2016</div>
+        <div class="pub-title"><a href="http://pubs.rsc.org/en/content/articlelanding/2016/sm/c5sm02991k">Shape dynamics of growing cell walls</a></div>
+        <div class="pub-authors">Banerjee S, Scherer NF, Dinner AR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2015 and earlier -->
+  <div class="year-group">
+    <div class="year-label"><span>2015</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW LETTERS · 114, 228101 · 2015</div>
+        <div class="pub-title"><a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.228101">Propagating stress waves during epithelial expansion</a></div>
+        <div class="pub-authors">Banerjee S*, Utuje KJC, Marchetti MC*</div>
+        <div class="pub-callouts"><span class="callout">Editor's Suggestion</span></div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/waves.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SCIENTIFIC REPORTS · 5, 9155 · 2015</div>
+        <div class="pub-title"><a href="http://www.nature.com/srep/2015/150317/srep09155/full/srep09155.html">Intergenerational continuity of cell shape dynamics in <em>Caulobacter crescentus</em></a></div>
+        <div class="pub-authors">Wright CS, Banerjee S, Iyer-Biswas S, Crosson S, Dinner AR, Scherer NF</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW LETTERS · 114, 098302 · 2015</div>
+        <div class="pub-title"><a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.114.098302">Active Viscoelastic Matter: from bacterial drag reduction to turbulent solids</a></div>
+        <div class="pub-authors">Hemmingway EJ, Maitra A, Banerjee S, Marchetti MC, Ramaswamy S, Fielding SM, Cates ME</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-label"><span>2014</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 107, 825 · 2014</div>
+        <div class="pub-title"><a href="http://www.cell.com/biophysj/abstract/S0006-3495(14)00717-6">Geometry regulates traction stresses in adherent cells</a></div>
+        <div class="pub-authors">Oakes PW, Banerjee S, Marchetti MC, Gardel ML</div>
+        <div class="pub-callouts"><span class="callout">Featured in New and Notable</span></div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/BPJ2014.tif.jpg" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 10, 2424 · 2014</div>
+        <div class="pub-title"><a href="http://pubs.rsc.org/en/content/articlelanding/2014/sm/c3sm52647j">Optimal shapes and stresses of adherent cells on patterned substrates</a></div>
+        <div class="pub-authors">Banerjee S, Sknepnek R, Marchetti MC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-label"><span>2013</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 9, 5251 · 2013</div>
+        <div class="pub-title"><a href="http://pubs.rsc.org/en/content/articlelanding/2013/sm/c3sm27791g">Polymorphism and bistability in adherent cells</a></div>
+        <div class="pub-authors">Banerjee S, Giomi L</div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/shapes.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">NEW JOURNAL OF PHYSICS · 15, 035015 · 2013</div>
+        <div class="pub-title"><a href="http://iopscience.iop.org/1367-2630/15/3/035015">Controlling cell-matrix traction forces by extracellular geometry</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC</div>
+        <div class="pub-callouts"><span class="callout">Highlights of 2013</span></div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PNAS · 110, 842 · 2013</div>
+        <div class="pub-title"><a href="http://www.pnas.org/content/110/3/842.short">Cadherin-based intercellular adhesions organize epithelial cell-matrix traction forces</a></div>
+        <div class="pub-authors">Mertz AF, Che Y, Banerjee S, Goldstein JM, Rosowski KA, Revilla SF, Niessen CM, Marchetti MC, Dufresne ER, Horsley V</div>
+        <div class="pub-callouts"><span class="callout press"><a href="http://f1000.com/prime/717968875">Recommended by F1000Prime</a></span></div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/3cell.png" alt="Figure"></div>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-label"><span>2011–2012</span><div class="year-rule"></div></div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW LETTERS · 109, 108101 · 2012</div>
+        <div class="pub-title"><a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.109.108101">Contractile stresses in cohesive cell layers on finite-thickness substrates</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW LETTERS · 108, 198101 · 2011</div>
+        <div class="pub-title"><a href="http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.108.198101">Scaling of traction forces with the size of cohesive cell colonies</a></div>
+        <div class="pub-authors">Mertz AF, Banerjee S, Che Y, German GK, Xu Y, Hyland C, Marchetti MC, Horsley V, Dufresne ER</div>
+        <div class="pub-callouts"><span class="callout">Editor's Suggestion</span></div>
+      </div>
+      <div class="pub-thumb"><img src="/assets/img/colony.png" alt="Figure"></div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">BIOPHYSICAL JOURNAL · 102, 2424 · 2012</div>
+        <div class="pub-title"><a href="http://www.cell.com/biophysj/abstract/S0006-3495(12)00519-X">Heterogeneous drying stresses in <em>stratum corneum</em></a></div>
+        <div class="pub-authors">German GK, Engl WC, Pashkovski E, Banerjee S, Xu Y, Mertz AF, Hyland C, Dufresne ER</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">EUROPHYSICS LETTERS · 96, 58004 · 2011</div>
+        <div class="pub-title"><a href="http://iopscience.iop.org/0295-5075/96/5/58004">Generic phases of cross-linked active gels: Relaxation, oscillation and contractility</a></div>
+        <div class="pub-authors">Banerjee S, Liverpool TB, Marchetti MC</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">EUROPHYSICS LETTERS · 96, 28003 · 2011</div>
+        <div class="pub-title"><a href="http://iopscience.iop.org/0295-5075/96/2/28003">Substrate rigidity deforms and polarizes active gels</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">PHYSICAL REVIEW E · 84, 011914 · 2011</div>
+        <div class="pub-title"><a href="http://journals.aps.org/pre/abstract/10.1103/PhysRevE.84.011914">Motor-driven dynamics of cytoskeletal filaments in motility assays</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC, Müller-Nedebock KK</div>
+      </div>
+    </div>
+
+    <div class="pub-entry">
+      <div>
+        <div class="pub-venue">SOFT MATTER · 7, 463 · 2011</div>
+        <div class="pub-title"><a href="http://pubs.rsc.org/en/content/articlelanding/2011/sm/c0sm00494d">Instabilities and oscillations in isotropic active gels</a></div>
+        <div class="pub-authors">Banerjee S, Marchetti MC</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /pub-content -->
+
+<footer class="site-footer" id="contact">
+  <div class="footer-grid">
+    <div>
+      <h4>// ADDRESS</h4>
+      <p>Prof. Shiladitya Banerjee<br>School of Physics, Georgia Tech<br>Howey Physics Building, 837 State St NW<br>Atlanta, GA 30332</p>
+      <br><p>sbanerjee347 [at] gatech.edu</p>
+    </div>
+    <div>
+      <h4>// NAVIGATE</h4>
+      <p>
+        <a href="/res">Research</a><br>
+        <a href="/people">People</a><br>
+        <a href="/pub">Publications</a><br>
+      </p>
+    </div>
+    <div>
+      <h4>// ELSEWHERE</h4>
+      <p>
+        <a href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate" target="_blank" rel="noopener">Google Scholar →</a><br>
+        <a href="https://orcid.org/0000-0001-8000-2556" target="_blank" rel="noopener">ORCID →</a><br>
+        <a href="https://github.com/BanerjeeLab" target="_blank" rel="noopener">Lab GitHub →</a><br>
+        <a href="https://twitter.com/ShilaBanerji" target="_blank" rel="noopener">Twitter / X →</a><br>
+        <a href="https://bsky.app/profile/shilabanerjee.bsky.social" target="_blank" rel="noopener">Bluesky →</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© SHILADITYA BANERJEE · 2026</span>
+    <span>GA TECH · SCHOOL OF PHYSICS</span>
   </div>
 </footer>
 
-
-<script src="/assets/js/jquery-2.1.1.min.js"></script>
-<script src="/assets/js/functions.js" type="text/javascript"></script>
 </body>
 </html>

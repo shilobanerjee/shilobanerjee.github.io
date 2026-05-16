@@ -1,351 +1,483 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title></title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!--<meta http-equiv="content-type" content="text/html; charset=utf-8" />-->
- 
-<style>
-* {box-sizing:border-box}
-body {font-family: Verdana,sans-serif;}
-#sidebar {
-float: right;
-margin-top: 2px;
-width: 280px;
-padding-left: 10px;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Banerjee Lab — Living Matter Theory at Georgia Tech. We build physical models of living systems using tools from physics, mathematics, and systems biology.">
+  <title>Banerjee Lab — Living Matter Theory</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <style>
+    /* ---- HERO ---- */
+    .hero {
+      max-width: 1200px; margin: 0 auto;
+      padding: 96px 40px 80px;
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; letter-spacing: 0.12em;
+      color: var(--accent); font-weight: 500;
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h1.hero-title {
+      font-family: 'Fraunces', serif;
+      font-size: 68px; font-weight: 500;
+      line-height: 1.02; letter-spacing: -0.025em;
+      margin-bottom: 28px;
+    }
+    h1.hero-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+    .lede {
+      font-size: 18px; color: var(--ink-soft);
+      max-width: 500px; margin-bottom: 36px; line-height: 1.55;
+    }
+    .hero-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px; color: var(--ink-faint);
+      letter-spacing: 0.04em;
+      padding-top: 24px; border-top: 1px solid var(--rule);
+      max-width: 480px;
+    }
+    .hero-meta strong { color: var(--ink); font-weight: 500; }
 
-#sidebar h3 {
-background: url(assets/img/sidebarh3.jpg) no-repeat;
-height: 60px;
-line-height: 60px;
-font-weight: 600;
-font-size: 14px;
-margin: 0; padding: 0 0 0 20px; 
-color: #F9F7ED;
-}
+    /* Hero image collage */
+    .hero-images {
+      aspect-ratio: 4/5;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 2fr 1fr;
+      gap: 10px;
+      position: relative;
+    }
+    .coord-marker {
+      position: absolute; top: -14px; right: -14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; color: var(--accent);
+      letter-spacing: 0.08em;
+      background: var(--paper); padding: 4px 10px;
+      border: 1px solid var(--rule); border-radius: 100px;
+      z-index: 2;
+    }
+    .hero-img {
+      border-radius: 4px; overflow: hidden;
+      position: relative; background: #2a1408;
+    }
+    .hero-img.main { grid-row: 1 / 3; }
+    .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(0,0,0,0.45) 100%);
+      pointer-events: none;
+    }
+    .img-caption {
+      position: absolute; bottom: 14px; left: 14px;
+      color: rgba(255,255,255,0.9);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; z-index: 2;
+    }
+    .hero-img.main .img-caption { bottom: 18px; left: 18px; font-size: 11px; }
 
-#sidebar p { padding: 0 10px 10px 10px; color: #232323; }
+    /* ---- NEWS ---- */
+    .news-strip {
+      background: var(--paper-warm);
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      padding: 28px 0;
+    }
+    .news-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 40px;
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 36px; align-items: start;
+    }
+    .news-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--ink-faint);
+      font-weight: 500; padding-top: 2px;
+    }
+    .news-items { display: flex; flex-direction: column; gap: 10px; }
+    .news-item {
+      display: flex; gap: 16px; align-items: baseline;
+      font-size: 14px;
+    }
+    .news-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      font-weight: 500; white-space: nowrap;
+      letter-spacing: 0.05em; min-width: 60px;
+    }
+    .news-text { color: var(--ink-soft); }
+    .news-text strong { color: var(--ink); font-weight: 600; }
+    .news-text a { color: var(--accent); }
 
-#sidebar ul {
-padding: 5px 0 20px 35px;
-margin: 0;
-color: #960224;
-}
+    /* ---- RESEARCH THEMES ---- */
+    .themes {
+      padding: 96px 0;
+      position: relative; overflow: hidden;
+    }
+    .themes-bg {
+      position: absolute; top: 40px; right: -80px;
+      width: 380px; height: 380px;
+      opacity: 0.05; pointer-events: none;
+    }
+    .themes-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; position: relative; }
+    .theme-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 52px; margin-top: 60px;
+    }
+    .theme { border-top: 1px solid var(--ink); padding-top: 28px; }
+    .theme-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      letter-spacing: 0.15em; margin-bottom: 18px; font-weight: 500;
+    }
+    .theme-icon { width: 40px; height: 40px; color: var(--accent); margin-bottom: 18px; opacity: 0.9; }
+    .theme h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 21px; font-weight: 600;
+      margin-bottom: 14px; line-height: 1.25;
+    }
+    .theme p { font-size: 15px; color: var(--ink-soft); }
 
-#sidebar ul li {
-padding: 0;
-margin: 0;
-}
+    /* ---- RECENT PAPERS ---- */
+    .recent {
+      background: var(--paper-warm);
+      border-top: 1px solid var(--rule);
+      padding: 96px 0;
+      position: relative; overflow: hidden;
+    }
+    .recent-bg {
+      position: absolute; bottom: 40px; left: -100px;
+      width: 340px; height: 340px;
+      opacity: 0.04; pointer-events: none;
+    }
+    .recent-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; position: relative; }
+    .recent-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 56px; padding-bottom: 22px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .recent-header a {
+      color: var(--accent); font-size: 14px; font-weight: 500;
+      border-bottom: 1px solid var(--accent); padding-bottom: 2px;
+    }
+    .recent-header a:hover { text-decoration: none; }
+    .paper {
+      display: grid; grid-template-columns: 190px 1fr auto;
+      gap: 36px; align-items: center;
+      padding: 28px 0; border-bottom: 1px solid var(--rule-soft);
+      transition: padding-left 0.2s;
+    }
+    .paper:hover { padding-left: 10px; }
+    .paper-thumb {
+      aspect-ratio: 4/3; border-radius: 4px;
+      overflow: hidden; position: relative;
+    }
+    .paper-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .paper-thumb-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, #c2410c 0%, #6b2010 100%);
+    }
+    .paper:nth-child(2) .paper-thumb-placeholder { background: linear-gradient(135deg, #1e3a5f 0%, #0f1f33 100%); }
+    .paper:nth-child(3) .paper-thumb-placeholder { background: linear-gradient(135deg, #6b3410 0%, #2a1408 100%); }
+    .paper:nth-child(4) .paper-thumb-placeholder { background: linear-gradient(135deg, #4a3a5a 0%, #2a1f33 100%); }
+    .paper-venue {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--accent);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 10px; font-weight: 500;
+    }
+    .paper-title {
+      font-family: 'Fraunces', serif;
+      font-size: 19px; font-weight: 500;
+      line-height: 1.3; margin-bottom: 10px;
+      color: var(--ink);
+    }
+    .paper-authors { font-size: 14px; color: var(--ink-soft); }
+    .paper-authors em { font-weight: 600; font-style: normal; color: var(--ink); }
+    .paper-year {
+      font-family: 'Fraunces', serif;
+      font-size: 34px; font-weight: 400;
+      color: var(--ink-faint); font-style: italic;
+      white-space: nowrap;
+    }
 
-#sidebar ul ul { padding: 2px 0 2px 20px; }
-
-/* Slideshow container */
-.slideshow-container {
-  max-width: 600px;
-  /*max-height: 300px;
-  position: relative;
-  /*position: absolute; 
-    top: 490px; 
-    left: 10px; 
-    right: -250px; 
-    bottom: 100px; */
-  margin: auto;
-}
-
- #slideshow { 
-    margin: 50px auto; 
-    position: absolute; 
-    top: 490px; 
-    left: 10px; 
-    right: 650px; 
-    bottom: 100px; 
-    width: 220px; 
-    height: 150px; 
-    padding: 10px; 
-    box-shadow: 0 0 20px rgba(0,0,0,0.4); 
-}
-
-#slideshow >div { 
-    position: absolute; 
-    top: 20px; 
-    left: 10px; 
-    right: 10px; 
-    bottom: 50px; 
-}
-
-/* Caption text */
-.text {
-  color: #568858;
-  background-color:blue
-  font-size: 13px;
-  /*padding: 8px 12px;*/
-  position: absolute;
-  top: -40px;
-    right: 10;
-    width: 200px;
-    height: 100px;
-  /*  border: 3px solid #73AD21;
-  bottom: 0px;
-  width: 100%;*/
-  text-align: left;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  height: 13px;
-  width: 13px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.active {
-  background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
-}
-
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .text {font-size: 11px}
-}
-</style> 
-
-
-  <link rel="shortcut icon" type="image/jpg" href=/assets/img/ucl_gom.jpg>
-  <link rel="stylesheet" href="/assets/css/main.css" />
-  
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+      h1.hero-title { font-size: 48px; }
+      .hero-images { aspect-ratio: 3/2; }
+      .theme-grid { grid-template-columns: 1fr; gap: 32px; }
+      .paper { grid-template-columns: 120px 1fr; }
+      .paper-year { display: none; }
+      .news-inner { grid-template-columns: 1fr; gap: 16px; }
+      .news-label { display: none; }
+    }
+  </style>
 </head>
 <body>
-<header>
-    <a href="http://shiladitya-banerjee.com"><h1><span>Banerjee Lab</span></h1></a>
 
-
-    <nav>
-        <a href="http://shiladitya-banerjee.com">home</a>
-        <a href=/people>people</a>
-        <a href=/res>research</a>
-        <a href=/pub>publications</a>
-        <a href=/teaching>links</a>
-        <a href="http://shiladitya-banerjee.com#contact">contact</a>
-    </nav>
-<br><br><p><h3><span style="font-family:'Brush Script MT', cursive; color:#335CDA; font-size:24px">Physics of Living Systems</span></h3></p>
+<header class="site-header">
+  <nav class="site-nav">
+    <a class="nav-brand" href="/">
+      <svg class="nav-brand-mark" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="10" stroke="var(--accent)" stroke-width="1.2"/>
+        <circle cx="11" cy="11" r="6" stroke="var(--accent)" stroke-width="1" opacity="0.5"/>
+        <circle cx="11" cy="11" r="3" fill="var(--accent)"/>
+      </svg>
+      Banerjee<span class="dot">.</span>Lab
+    </a>
+    <ul class="nav-links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="/res">Research</a></li>
+      <li><a href="/people">People</a></li>
+      <li><a href="/pub">Publications</a></li>
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+  </nav>
 </header>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-82654585-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
-<p>
-<h3>
-<center><b>We develop theory and computational models of living systems and processes</b></center><br></h3> 
-</p>
-<div class="slideshow-container">
-
-<div class="mySlides fade">
-  <img src="SVIE.png" style="border:2px solid black" width=600 height=300>
-</div>
-
-<div class="mySlides fade">
-  <img src="pcb2.png" style="border:2px solid black" width=600 height=300>
-  
-</div>
-<div class="mySlides fade">
-  <img src="im0.jpg" style="border:2px solid black" width=600 height=300>
-  
-
-  
-</div>
-<div class="mySlides fade">
-  <img src="im2.png" style="border:2px solid black" width=600 height=300>
-  
-</div>
-<div class="mySlides fade">
-  <img src="im3.png" style="border:2px solid black" width=600 height=300>
-  
-</div>
-
-
-
-</div>
-<div style="text-align:center">
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  <span class="dot"></span>
-  
-</div>
-
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    for (i = 0; i < slides.length; i++) {
-       slides[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex> slides.length) {slideIndex = 1}
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block";
-    dots[slideIndex-1].className += " active";
-    setTimeout(showSlides, 5000); // Change image every 2 seconds
-}
-</script>
-
-
-
-  </div>
-</section>
-
-<section>
-  <div class="about-lockup">
-  <div class="blurb">
-    
-          <p align="justify"><span style="font-weight:275; color:black; font-size:15px">One of the grand challenges of the 21st century is to understand, control, and re-engineer a living system from its many component parts to reconstitute the unique functions, structures, and material properties that define life. Our lab takes on this challenge by building quantitative models rooted in physics that bring out the design rules sculpting biological form, function, and behaviour across different spatiotemporal scales and organisational levels. Our work is organised around three main themes:</span><br><br>
-          <b>Mechanics of subcellular organization:</b> How does a cell build and organize its internal structures to control its mechanical behavior?  <br>
-          <b>Single-cell biophysics:</b> How do single cells coordinate their growth with replication cycle to control their size, shape and biophysical activities?<br>
-          <b>Collective behavior in multicellular systems:</b> How do cells in a population communicate, coordinate and cooperate to successfully proliferate, transmit mechanical forces, and repair damages?<br>
-
-
-
-          </p>
-<!--<a href="https://twitter.com/ShiloBanerji"> <img border="0" alt="Twitter" src="/assets/img/twitter.jpg" width="53" height="53"></a><br>-->
-        
-        
-          <span style="font-weight:bold; color:black; font-size:18px">  <font color = "#1358C1">Selected Recent Papers</font></span>
-          <hr style="height:2px;border-width:0;background-color:gray">
-
-<p><img src="/assets/img/WernerCB2024.png" alt="Smiley face" width="120" height="128" align="left" hspace="10"> <b>Mechanical and biochemical feedback combine to generate complex contractile oscillations in cytokinesis</b><br>
-       Werner M <i> et al</i>,
-       <a href="https://www.cell.com/current-biology/abstract/S0960-9822(24)00821-2"><font color = "#761212">Current Biology 34, 3201 (2024)</font></a><br><br><br><br>
-
-<p><img src="/assets/img/CommsPhys2024.png" alt="Smiley face" width="120" height="126" align="left" hspace="10"> <b>Excitable dynamics driven by mechanical feedback in biological tissues</b><br>    Perez-Verdugo F <i> et al</i>,
-       <a href="https://www.nature.com/articles/s42005-024-01661-2"><font color = "#761212">Communications Physics 7, 167 (2024)</font></a><br><br><br><br>
-
-
-  <p><img src="/assets/img/prxlife24.png" alt="Smiley face" width="120" height="122" align="left" hspace="10"> <b>Gene Expression Tradeoffs Determine Bacterial Survival and Adaptation to Antibiotic Stress</b><br> 
-       Kratz JC and Banerjee S, 
-       <a href="https://journals.aps.org/prxlife/accepted/b507aI0dXae1f30220e613b5f467e8be058ca2fec"><font color = "#761212">PRX Life 2, 013010 (2024)</font></a><br><br><br><br>
-
-  <p><img src="/assets/img/PRXf.png" alt="Smiley face" width="120" height="120" align="left" hspace="10"> <b>Tension Remodeling Regulates Topological Transitions in Epithelial Tissues</b><br> 
-       Perez-Verdugo F and Banerjee S,
-       <a href="ttps://journals.aps.org/prxlife/abstract/10.1103/PRXLife.1.023006"><font color = "#761212">PRX Life 1, 023006 (2023)</font></a><br><br><br><br>
-
- <p><img src="/assets/img/prx2022.png" alt="Smiley face" width="120" height="103" align="left" hspace="10"> <b>Cell-Matrix Elastocapillary Interactions Drive Pressure-Based Wetting of Cell Aggregates</b><br> 
-       Yousafzai M et al,
-       <a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.12.031027"><font color = "#761212">PRX 12, 031027 (2022)</font></a><br><br>
-
-
-<hr style="height:2px;border-width:0;background-color:gray">
-      <!--    <ul style="list-style-type:square">
-            <li align="justify"> <font color = "#0F40B0" face="verdana">September 2018</font> | New paper on epithelial force localization published in <a href="https://www.molbiolcell.org/doi/10.1091/mbc.E18-05-0336"><font color = "#761212">MBoC</font></a>.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">August 2018</font> | SB has been awarded a <a href="https://royalsociety.org/grants-schemes-awards/grants/university-research/"><font color = "#761212">University Research Fellowship</font></a> from the <a href="https://royalsociety.org"><font color = "#761212">Royal Society</font></a>.
-          	<li align="justify"> <font color = "#0F40B0" face="verdana">August 2018</font> | Diana Serbanescu joins the lab as a new PhD student.
-          	<li align="justify"> <font color = "#0F40B0" face="verdana">July 2018</font> | Welcome to new postdoc Nikola Ojkic who joins us from University of Edinburgh.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">03.05.2018</font> | <a href="http://shiladitya-banerjee.com/teaching/"><font color = "#761212">Summer Studentship Available in Biophysics. Closing Date: May 17, 2018.</font></a>
-            <li align="justify"> <font color = "#0F40B0" face="verdana">April 2018</font> | <a href="https://www.nature.com/naturejobs/science/jobs/639707-postdoctoral-research-associate-in-theoretical-computational-biophysics"><font color = "#761212">Postdoctoral Position Available!</font></a>
-            <li align="justify"> <font color = "#0F40B0" face="verdana">March 2018</font> | SB received <a href="http://www.hfsp.org/sites/www.hfsp.org/files/Press%20release%20RG%202018%20(web).pdf"><font color = "#761212">2018 HFSP Young Investigator Award</font></a> with collaborators Michael Murrell (Yale Univeristy) and Alba Diz-Munoz (EMBL, Heidelberg).
-            <li align="justify"> <font color = "#0F40B0" face="verdana">Feb 2018</font> | SB received EPSRC New Investigator Award.
-            <li align="justify"> <font color = "#0F40B0" face="verdana">25.07.2017</font> | AFiNeS is published in <a href="http://www.cell.com/biophysj/fulltext/S0006-3495(17)30622-7"><font color = "#761212">Biophysical Journal</font></a>.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">24.07.2017</font> | Check out our new paper on Cell Size Control published in <a href="https://www.nature.com/articles/nmicrobiol2017116"><font color = "#761212">Nature Microbiology</font></a>.  
-          <li align="justify"> <font color = "#0F40B0" face="verdana">19.06.2017</font> | <a href="http://www.ucl.ac.uk/chemistry/anslab/accordion-news/19.06.17"><font color = "#761212">UCL Cross-Disciplinary Network on Soft Materials</font></a>.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">25.05.2017</font> | Preprint on biorxiv: <a href="http://biorxiv.org/content/early/2017/05/25/141796.article-metrics"><font color = "#761212">Filament Rigidity And Connectivity Tune The Deformation Modes Of Active Biopolymer Networks</font></a>.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">03.05.2017</font> | CECAM workshop on <a href="https://www.cecam.org/workshop-1390.html"><font color = "#761212">Cell and Tissue motility</font></a>. 
-          <li align="justify"> <font color = "#0F40B0" face="verdana">15.02.2017</font> | New paper on Liquid Behavior of Cross-linked Actin Bundles published in <a href="http://www.pnas.org/content/early/2017/02/09/1616133114.abstract"><font color = "#761212">PNAS</font></a>.  
-          <li align="justify"> <font color = "#0F40B0" face="verdana">25.01.2017</font> | SB joins the <a href="http://www.nature.com/srep/about/editorial-board"><font color = "#761212">Editorial Board of Scientific Reports</font></a>.    
-          <li align="justify"> <font color = "#0F40B0" face="verdana">16.11.2016</font> | SB will present the <a href="http://rhoda-hawkins.staff.shef.ac.uk/SoftMatterSeminars.html"><font color = "#761212">Soft Matter and Biological Physics Seminar</font></a> at University of Sheffield.  
-          <li align="justify"> <font color = "#0F40B0" face="verdana">11.11.2016</font> | SB will present at the <a href="http://www.lifesci.dundee.ac.uk/research/cb/computational-biology-seminar-series"><font color = "#761212">Computational Biology Seminar Series</font></a> at University of Dundee.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">07.11.2016</font> | SB will present the <a href="http://www.ucl.ac.uk/lmcb/seminars-and-events"><font color = "#761212">LMCB seminar</font></a> at MRC building in UCL.  
-          <li align="justify"> <font color = "#0F40B0" face="verdana">18.09.2016</font> | New preprint on Active Filament Network Simulation package (AFiNeS) posted in <a href="http://arxiv.org/abs/1609.05202"><font color = "#761212">arXiv</font></a>.
-          <li align="justify"> <font color = "#0F40B0" face="verdana">25.08.2016</font> | Check out our new paper on Telescopic Actomyosin Contractility published in <a href="http://www.nature.com/ncomms/2016/160825/ncomms12615/full/ncomms12615.html"><font color = "#761212">Nature Communications</font></a>.-->
-         
-        
-        </div>
-        <hr style="height:2px;border-width:0;background-color:gray"> 
-        </div>
-        <a class="twitter-timeline" data-width="500" data-height="500" href="https://twitter.com/ShilaBanerji?ref_src=twsrc%5Etfw">Tweets by ShilaBanerji</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-        </section>
-
-<section class="contact-section">
+<!-- HERO -->
+<section class="hero">
   <div>
-    <h3 id="contact">Contact Information</h3>
-    <div class="contact-info">
-    
-      <p><b>Mailing Address:</b><br>Prof. Shiladitya Banerjee<br>School of Physics<br>Georgia Institute of Technology<br>Howey Physics Bldg, 837 State St NW<br>Atlanta, GA 30332<br>United States</p>
-      <p><b>Email</b>: sbanerjee347 AT gatech.edu<br> <b>Office</b>: Howey W510 [<a href="https://www.cmu.edu/mscf/files/cmu_map_8.5x11.pdf"><font color = "#761212">Map</font></a>]</p>
-      
-      <!--
-      <a href="https://www.ucl.ac.uk/physics-living-systems">
-      <Institute for the Physics of Living Systems</a> -->
-      
+    <div class="eyebrow">
+      <span class="pulse-dot"></span>
+      BANERJEE LAB — GEORGIA TECH
+    </div>
+    <h1 class="hero-title">Living matter <em>theory.</em></h1>
+    <p class="lede">We build physical models of living systems using tools from physics, mathematics, and systems biology — revealing the design principles that govern life from molecules to multicellular collectives.</p>
+    <div class="hero-meta">
+      <strong>School of Physics</strong> &nbsp;·&nbsp; Georgia Tech &nbsp;·&nbsp; Atlanta, GA
     </div>
   </div>
-  <div>
-    <div class="contact-links">
-      <!--<img src="assets/files/ucl_logo.jpg" width="25%" height="25%" style="position: relative; bottom: 10px; right: 70px;">-->
-      
+  <div class="hero-images">
+    <span class="coord-marker">FIG · 01</span>
+    <div class="hero-img main">
+      <img src="/SVIE.png" alt="Physics of living systems simulation">
+      <span class="img-caption">cytokinesis dynamics</span>
+    </div>
+    <div class="hero-img small-1">
+      <img src="/res/im2.png" alt="Epithelial tissue simulation">
+      <span class="img-caption">epithelium</span>
+    </div>
+    <div class="hero-img small-2">
+      <img src="/res/im0.png" alt="Single-cell biophysics">
+      <span class="img-caption">single-cell</span>
     </div>
   </div>
 </section>
 
-<footer>
-  <div class="content-wrap">
-    <nav>
-        <a href="http://shiladitya-banerjee.com">home</a>
-        <a href=/people>people</a>
-        <a href=/res>research</a>
-        <a href=/pub>publications</a>
-        <a href=/teaching>links</a>
-        <a href="http://shiladitya-banerjee.com#contact">contact</a>
-    </nav>
+<!-- NEWS STRIP -->
+<div class="news-strip">
+  <div class="news-inner">
+    <div class="news-label">Recent News</div>
+    <div class="news-items">
+      <div class="news-item">
+        <span class="news-date">May '26</span>
+        <span class="news-text"><strong>New paper:</strong> Multi-timescale adaptation and emergent learning in single bacterial cells — <a href="https://doi.org/10.1103/5zbg-8vll">PRX Life (2026)</a></span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Apr '26</span>
+        <span class="news-text"><strong>New paper:</strong> Mechanosensitive feedback in hindbrain neuropore morphogenesis — <a href="https://www.cell.com/current-biology/fulltext/S0960-9822(26)00255-1">Current Biology 36, 1908 (2026)</a> · <a href="https://research.gatech.edu/physics-brain-development-how-cells-pull-together-form-neural-tube">GT News</a></span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jan '26</span>
+        <span class="news-text"><strong>Award:</strong> Selected as 2026 Outstanding Referee of the Physical Review journals</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <p class="copyright">&copy Shiladitya Banerjee 2025</p>
+<!-- RESEARCH THEMES -->
+<section class="themes">
+  <svg class="themes-bg" viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="var(--accent)" fill="none" stroke-width="1">
+      <circle cx="190" cy="190" r="170"/>
+      <circle cx="190" cy="190" r="130"/>
+      <circle cx="190" cy="190" r="90"/>
+      <circle cx="190" cy="190" r="50"/>
+      <circle cx="190" cy="190" r="14"/>
+    </g>
+    <g fill="var(--accent)">
+      <circle cx="190" cy="20" r="3"/><circle cx="360" cy="190" r="3"/>
+      <circle cx="190" cy="360" r="3"/><circle cx="20" cy="190" r="3"/>
+    </g>
+  </svg>
+  <div class="themes-inner">
+    <div class="section-label">— RESEARCH</div>
+    <h2 class="section-title">Three lines of inquiry, one <em>question:</em> how does life build itself?</h2>
+    <div class="theme-grid">
+      <div class="theme">
+        <div class="theme-num">i. SUBCELLULAR</div>
+        <svg class="theme-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <circle cx="20" cy="20" r="17"/>
+          <circle cx="20" cy="20" r="8"/>
+          <line x1="20" y1="3" x2="20" y2="12"/>
+          <line x1="20" y1="28" x2="20" y2="37"/>
+          <line x1="3" y1="20" x2="12" y2="20"/>
+          <line x1="28" y1="20" x2="37" y2="20"/>
+        </svg>
+        <h3>Physical principles of intracellular organization</h3>
+        <p>How does a cell build and organize intracellular structures to control its physical behavior?</p>
+      </div>
+      <div class="theme">
+        <div class="theme-num">ii. SINGLE-CELL</div>
+        <svg class="theme-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <ellipse cx="20" cy="20" rx="17" ry="12"/>
+          <circle cx="16" cy="18" r="4"/>
+          <circle cx="26" cy="22" r="2.5"/>
+          <path d="M 5 26 Q 20 32 35 26"/>
+        </svg>
+        <h3>Single-cell biophysics</h3>
+        <p>How do single cells grow, move, adapt, and learn in dynamic and fluctuating environments?</p>
+      </div>
+      <div class="theme">
+        <div class="theme-num">iii. COLLECTIVE</div>
+        <svg class="theme-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <circle cx="10" cy="12" r="5"/>
+          <circle cx="30" cy="12" r="5"/>
+          <circle cx="20" cy="30" r="5"/>
+          <line x1="10" y1="12" x2="30" y2="12"/>
+          <line x1="10" y1="12" x2="20" y2="30"/>
+          <line x1="30" y1="12" x2="20" y2="30"/>
+        </svg>
+        <h3>Collective multicellular behavior</h3>
+        <p>How do cells communicate, coordinate, and cooperate to drive tissue morphogenesis and collective mechanical function?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENT PAPERS -->
+<section class="recent">
+  <svg class="recent-bg" viewBox="0 0 340 340" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g stroke="var(--accent)" fill="none" stroke-width="1">
+      <path d="M 20 170 Q 90 50 170 170 T 320 170"/>
+      <path d="M 20 190 Q 90 70 170 190 T 320 190" opacity="0.5"/>
+      <path d="M 20 150 Q 90 30 170 150 T 320 150" opacity="0.5"/>
+    </g>
+    <g fill="var(--accent)">
+      <circle cx="50" cy="130" r="2.5"/>
+      <circle cx="120" cy="95" r="2.5"/>
+      <circle cx="195" cy="170" r="2.5"/>
+      <circle cx="270" cy="145" r="2.5"/>
+    </g>
+  </svg>
+  <div class="recent-inner">
+    <div class="recent-header">
+      <div>
+        <div class="section-label">— RECENT WORK</div>
+        <h2 class="section-title" style="margin-bottom:0">Selected recent papers.</h2>
+      </div>
+      <a href="/pub">All publications →</a>
+    </div>
+
+    <div class="paper">
+      <div class="paper-thumb">
+        <img src="/assets/img/kratz_prxlife26.png" alt="Kratz et al PRX Life 2026" onerror="this.parentNode.innerHTML='<div class=paper-thumb-placeholder></div>'">
+      </div>
+      <div>
+        <div class="paper-venue">PRX LIFE · 2026</div>
+        <div class="paper-title">Multi-timescale adaptation and emergent learning in single bacterial cells</div>
+        <div class="paper-authors">Kratz JC, Wang H, Si F, Banerjee S</div>
+      </div>
+      <div class="paper-year">'26</div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-thumb">
+        <img src="/assets/img/perez_cb26.png" alt="Perez-Verdugo et al Current Biology 2026" onerror="this.parentNode.innerHTML='<div class=paper-thumb-placeholder></div>'">
+      </div>
+      <div>
+        <div class="paper-venue">CURRENT BIOLOGY · 36, 1908</div>
+        <div class="paper-title">Mechanosensitive feedback organizes cell shape and motion during hindbrain neuropore morphogenesis</div>
+        <div class="paper-authors">Perez-Verdugo F, Maniou E, Galea G, Banerjee S</div>
+      </div>
+      <div class="paper-year">'26</div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-thumb">
+        <img src="/assets/img/BanerjeeDS_elife25.png" alt="Banerjee DS and Banerjee S eLife 2025" onerror="this.parentNode.innerHTML='<div class=paper-thumb-placeholder></div>'">
+      </div>
+      <div>
+        <div class="paper-venue">eLIFE · 12, RP92203</div>
+        <div class="paper-title">Catalytic growth in a shared enzyme pool ensures robust control of centrosome size</div>
+        <div class="paper-authors">Banerjee DS &amp; Banerjee S</div>
+      </div>
+      <div class="paper-year">'25</div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-thumb">
+        <img src="/assets/img/PRXf.png" alt="Perez-Verdugo and Banerjee PRX Life 2023" onerror="this.parentNode.innerHTML='<div class=paper-thumb-placeholder></div>'">
+      </div>
+      <div>
+        <div class="paper-venue">PRX LIFE · 1, 023006</div>
+        <div class="paper-title">Tension remodeling regulates topological transitions in epithelial tissues</div>
+        <div class="paper-authors">Perez-Verdugo F &amp; Banerjee S &nbsp;·&nbsp; <a href="https://physics.aps.org/articles/v16/s169">Featured in APS Physics</a></div>
+      </div>
+      <div class="paper-year">'23</div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-thumb">
+        <img src="/assets/img/antibiotic.png" alt="Ojkic et al mBio 2022" onerror="this.parentNode.innerHTML='<div class=paper-thumb-placeholder></div>'">
+      </div>
+      <div>
+        <div class="paper-venue">mBIO · 13, e00659-22</div>
+        <div class="paper-title">Antibiotic resistance via bacterial cell shape-shifting</div>
+        <div class="paper-authors">Ojkic N, Serbanescu D, Banerjee S &nbsp;·&nbsp; Editor's Pick</div>
+      </div>
+      <div class="paper-year">'22</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<footer class="site-footer" id="contact">
+  <div class="footer-grid">
+    <div>
+      <h4>// ADDRESS</h4>
+      <p>
+        Prof. Shiladitya Banerjee<br>
+        School of Physics<br>
+        Georgia Institute of Technology<br>
+        Howey Physics Building, 837 State St NW<br>
+        Atlanta, GA 30332, United States
+      </p>
+      <br>
+      <p>
+        <strong style="color:#fff; opacity:1">Email:</strong> sbanerjee347 [at] gatech.edu<br>
+        <strong style="color:#fff; opacity:1">Office:</strong> Howey W504
+      </p>
+    </div>
+    <div>
+      <h4>// NAVIGATE</h4>
+      <p>
+        <a href="/res">Research</a><br>
+        <a href="/people">People</a><br>
+        <a href="/pub">Publications</a><br>
+      </p>
+    </div>
+    <div>
+      <h4>// ELSEWHERE</h4>
+      <p>
+        <a href="https://scholar.google.co.uk/citations?hl=en&user=-GropNMAAAAJ&view_op=list_works&authuser=1&sortby=pubdate" target="_blank" rel="noopener">Google Scholar →</a><br>
+        <a href="https://orcid.org/0000-0001-8000-2556" target="_blank" rel="noopener">ORCID →</a><br>
+        <a href="https://github.com/BanerjeeLab" target="_blank" rel="noopener">Lab GitHub →</a><br>
+        <a href="https://twitter.com/ShilaBanerji" target="_blank" rel="noopener">Twitter / X →</a><br>
+        <a href="https://bsky.app/profile/shilabanerjee.bsky.social" target="_blank" rel="noopener">Bluesky →</a>
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© SHILADITYA BANERJEE · 2026</span>
+    <span>GA TECH · SCHOOL OF PHYSICS</span>
   </div>
 </footer>
 
-
-<script src="/assets/js/jquery-2.1.1.min.js"></script>
-<script src="/assets/js/functions.js" type="text/javascript"></script>
 </body>
 </html>
