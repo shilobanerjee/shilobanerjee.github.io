@@ -33,10 +33,10 @@
     .slideshow-inner {
       max-width: 1200px; margin: 0 auto; padding: 0 40px;
     }
-    .slides-container { position: relative; overflow: hidden; border-radius: 6px; }
+    .slides-container { position: relative; border-radius: 6px; background: #f4f1ea; text-align: center; }
     .slide { display: none; }
     .slide.active { display: block; }
-    .slide img { width: 100%; max-height: 360px; object-fit: cover; border-radius: 6px; }
+    .slide img { max-width: 100%; max-height: 560px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block; }
     .slide-dots {
       display: flex; justify-content: center; gap: 8px;
       margin-top: 20px;
@@ -136,16 +136,22 @@
 <div class="slideshow">
   <div class="slideshow-inner">
     <div class="slides-container">
-      <div class="slide active"><img src="/res/im0.png" alt="Research image 1"></div>
-      <div class="slide"><img src="/res/im1.png" alt="Research image 2"></div>
-      <div class="slide"><img src="/res/im2.png" alt="Research image 3"></div>
-      <div class="slide"><img src="/res/im3.png" alt="Research image 4"></div>
+      <div class="slide active"><img src="/assets/img/Fig5-caulobacter.png" alt="Caulobacter cytokinesis dynamics"></div>
+      <div class="slide"><img src="/assets/img/cover_art_banerjee.png" alt="Actin network nematic order"></div>
+      <div class="slide"><img src="/assets/img/Fig3-tissue-phase-transition.png" alt="Tissue phase transition solid to fluid"></div>
+      <div class="slide"><img src="/assets/img/Fig4-surface-to-volume-scaling.png" alt="Surface to volume scaling in bacteria"></div>
+      <div class="slide"><img src="/assets/img/Fig2-bacterial-life-and-death.png" alt="Bacterial life and death phase portrait"></div>
+      <div class="slide"><img src="/assets/img/HNPCoverFinal.png" alt="Hindbrain neuropore morphogenesis"></div>
+      <div class="slide"><img src="/assets/img/Kratz2026_PRXLife.png" alt="Kratz PRX Life 2026 bacterial learning"></div>
     </div>
     <div class="slide-dots">
       <button class="slide-dot active" onclick="goTo(0)" aria-label="Slide 1"></button>
       <button class="slide-dot" onclick="goTo(1)" aria-label="Slide 2"></button>
       <button class="slide-dot" onclick="goTo(2)" aria-label="Slide 3"></button>
       <button class="slide-dot" onclick="goTo(3)" aria-label="Slide 4"></button>
+      <button class="slide-dot" onclick="goTo(4)" aria-label="Slide 5"></button>
+      <button class="slide-dot" onclick="goTo(5)" aria-label="Slide 6"></button>
+      <button class="slide-dot" onclick="goTo(6)" aria-label="Slide 7"></button>
     </div>
   </div>
 </div>
@@ -264,7 +270,7 @@
     slides[current].classList.add('active');
     dots[current].classList.add('active');
   }
-  setInterval(() => goTo((current + 1) % slides.length), 4000);
+  setInterval(() => goTo((current + 1) % 7), 4000);
 </script>
 </body>
 </html>
