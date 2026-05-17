@@ -33,16 +33,36 @@
     .slideshow-inner {
       max-width: 1200px; margin: 0 auto; padding: 0 40px;
     }
-    .slides-container { position: relative; border-radius: 6px; background: #f4f1ea; text-align: center; }
+    .slides-container { position: relative; border-radius: 8px; overflow: hidden; }
     .slide { display: none; }
     .slide.active { display: block; }
-    .slide img { max-width: 100%; max-height: 373px; width: auto; height: auto; object-fit: contain; border-radius: 6px; display: inline-block; }
+    .slide-inner {
+      position: relative;
+      background: var(--paper-warm);
+      border-radius: 8px;
+      text-align: center;
+      min-height: 200px;
+    }
+    .slide-pattern {
+      position: absolute; inset: 0; z-index: 1;
+      border-radius: 8px; overflow: hidden;
+    }
+    .slide-pattern svg { width: 100%; height: 100%; }
+    .slide-img {
+      position: relative; z-index: 2;
+      max-width: 100%; max-height: 373px;
+      width: auto; height: auto;
+      object-fit: contain;
+      border-radius: 4px;
+      display: inline-block;
+      padding: 16px 0;
+    }
     .slide-dots {
       display: flex; justify-content: center; gap: 8px;
-      margin-top: 20px;
+      margin-top: 16px;
     }
     .slide-dot {
-      width: 8px; height: 8px;
+      width: 7px; height: 7px;
       border-radius: 50%; background: var(--rule);
       cursor: pointer; border: none;
       transition: background 0.3s;
@@ -136,14 +156,459 @@
 <div class="slideshow">
   <div class="slideshow-inner">
     <div class="slides-container">
-      <div class="slide active"><img src="/assets/img/Fig5-caulobacter.png" alt="Caulobacter cytokinesis dynamics"></div>
-      <div class="slide"><img src="/assets/img/cover_art_banerjee.png" alt="Actin network nematic order"></div>
-      <div class="slide"><img src="/assets/img/Fig3-tissue-phase-transition.png" alt="Tissue phase transition solid to fluid"></div>
-      <div class="slide"><img src="/assets/img/Fig4-surface-to-volume-scaling.png" alt="Surface to volume scaling in bacteria"></div>
-      <div class="slide"><img src="/assets/img/Fig2-bacterial-life-and-death.png" alt="Bacterial life and death phase portrait"></div>
-      <div class="slide"><img src="/assets/img/HNPCoverFinal.png" alt="Hindbrain neuropore morphogenesis"></div>
-      <div class="slide"><img src="/assets/img/Kratz2026_PRXLife.png" alt="Kratz PRX Life 2026 bacterial learning"></div>
-    </div>
+
+      <!-- Slide 1: Caulobacter — rod-shaped bacteria pattern -->
+      <div class="slide active">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" stroke-linecap="round" opacity="0.15">
+                <!-- Scattered rod-shaped bacteria at various sizes and angles -->
+                <line x1="60"  y1="40"  x2="110" y2="40"  stroke-width="10"/>
+                <line x1="200" y1="20"  x2="260" y2="20"  stroke-width="12"/>
+                <line x1="380" y1="55"  x2="420" y2="45"  stroke-width="9"/>
+                <line x1="500" y1="30"  x2="560" y2="25"  stroke-width="11"/>
+                <line x1="680" y1="50"  x2="730" y2="60"  stroke-width="10"/>
+                <line x1="850" y1="25"  x2="910" y2="30"  stroke-width="12"/>
+                <line x1="1000" y1="45" x2="1060" y2="40" stroke-width="9"/>
+                <!-- Mid rows -->
+                <line x1="30"  y1="130" x2="90"  y2="125" stroke-width="11"/>
+                <line x1="155" y1="150" x2="205" y2="140" stroke-width="10"/>
+                <line x1="310" y1="120" x2="370" y2="130" stroke-width="12"/>
+                <line x1="460" y1="145" x2="510" y2="135" stroke-width="9"/>
+                <line x1="590" y1="125" x2="650" y2="130" stroke-width="11"/>
+                <line x1="740" y1="140" x2="800" y2="145" stroke-width="10"/>
+                <line x1="880" y1="120" x2="940" y2="115" stroke-width="12"/>
+                <line x1="1040" y1="135" x2="1100" y2="140" stroke-width="9"/>
+                <!-- Angled bacteria -->
+                <line x1="100" y1="220" x2="148" y2="244" stroke-width="11"/>
+                <line x1="250" y1="240" x2="290" y2="210" stroke-width="10"/>
+                <line x1="420" y1="215" x2="470" y2="235" stroke-width="12"/>
+                <line x1="560" y1="250" x2="610" y2="225" stroke-width="9"/>
+                <line x1="700" y1="220" x2="750" y2="240" stroke-width="11"/>
+                <line x1="830" y1="235" x2="880" y2="215" stroke-width="10"/>
+                <line x1="960" y1="220" x2="1010" y2="245" stroke-width="12"/>
+                <!-- Dividing cell (two rods close together) -->
+                <line x1="338" y1="270" x2="368" y2="270" stroke-width="11"/>
+                <line x1="378" y1="270" x2="408" y2="270" stroke-width="11"/>
+                <line x1="738" y1="285" x2="768" y2="285" stroke-width="10"/>
+                <line x1="778" y1="285" x2="808" y2="285" stroke-width="10"/>
+                <!-- Bottom row -->
+                <line x1="50"  y1="340" x2="105" y2="345" stroke-width="10"/>
+                <line x1="200" y1="355" x2="255" y2="350" stroke-width="12"/>
+                <line x1="370" y1="340" x2="420" y2="350" stroke-width="9"/>
+                <line x1="510" y1="360" x2="565" y2="355" stroke-width="11"/>
+                <line x1="650" y1="345" x2="705" y2="340" stroke-width="10"/>
+                <line x1="800" y1="360" x2="855" y2="365" stroke-width="12"/>
+                <line x1="940" y1="345" x2="995" y2="340" stroke-width="9"/>
+                <line x1="1060" y1="355" x2="1110" y2="360" stroke-width="11"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/Fig5-caulobacter.png" alt="Caulobacter cytokinesis dynamics">
+        </div>
+      </div>
+
+      <!-- Slide 2: Actin cover art — flowing nematic filament lines -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" stroke-linecap="round" opacity="0.15">
+                <path d="M 0 60 Q 180 20 360 80 T 720 60 T 1120 75" stroke-width="2.5"/>
+                <path d="M 0 85 Q 180 45 360 105 T 720 85 T 1120 100" stroke-width="2"/>
+                <path d="M 0 110 Q 180 70 360 130 T 720 110 T 1120 125" stroke-width="2.5"/>
+                <path d="M 0 190 Q 200 260 560 180 T 1120 200" stroke-width="2.5"/>
+                <path d="M 0 215 Q 200 285 560 205 T 1120 225" stroke-width="2"/>
+                <path d="M 0 240 Q 200 310 560 230 T 1120 250" stroke-width="2.5"/>
+                <path d="M 0 310 Q 280 270 560 320 T 1120 305" stroke-width="2"/>
+                <path d="M 0 340 Q 280 300 560 350 T 1120 335" stroke-width="2.5"/>
+                <path d="M 120 0 Q 140 100 110 200 T 130 400" stroke-width="2"/>
+                <path d="M 330 0 Q 310 100 340 200 T 315 400" stroke-width="2.5"/>
+                <path d="M 560 0 Q 590 100 555 200 T 575 400" stroke-width="2"/>
+                <path d="M 790 0 Q 815 100 785 200 T 800 400" stroke-width="2.5"/>
+                <path d="M 1000 0 Q 980 100 1010 200 T 995 400" stroke-width="2"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/cover_art_banerjee.png" alt="Actin network nematic order">
+        </div>
+      </div>
+
+      <!-- Slide 3: Tissue phase transition — Voronoi tiling -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" stroke-width="1.2" stroke-linejoin="round" opacity="0.15">
+                <polygon points="0,0 95,0 78,58 38,78 0,58"/>
+                <polygon points="95,0 190,0 174,55 128,72 78,58"/>
+                <polygon points="190,0 285,0 268,52 222,70 174,55"/>
+                <polygon points="285,0 380,0 362,56 318,74 268,52"/>
+                <polygon points="380,0 475,0 458,54 412,72 362,56"/>
+                <polygon points="475,0 570,0 554,58 508,75 458,54"/>
+                <polygon points="570,0 665,0 648,52 602,70 554,58"/>
+                <polygon points="665,0 760,0 744,56 698,73 648,52"/>
+                <polygon points="760,0 855,0 838,54 792,72 744,56"/>
+                <polygon points="855,0 950,0 934,58 888,75 838,54"/>
+                <polygon points="950,0 1045,0 1028,52 982,70 934,58"/>
+                <polygon points="1045,0 1120,0 1120,58 1028,52"/>
+                <polygon points="38,78 78,58 128,72 118,135 68,152 25,122"/>
+                <polygon points="128,72 174,55 222,70 212,133 162,150 118,135"/>
+                <polygon points="222,70 268,52 318,74 308,137 258,154 212,133"/>
+                <polygon points="318,74 362,56 412,72 402,135 352,152 308,137"/>
+                <polygon points="412,72 458,54 508,75 498,138 448,155 402,135"/>
+                <polygon points="508,75 554,58 602,70 592,133 542,150 498,138"/>
+                <polygon points="602,70 648,52 698,73 688,136 638,153 592,133"/>
+                <polygon points="698,73 744,56 792,72 782,135 732,152 688,136"/>
+                <polygon points="792,72 838,54 888,75 878,138 828,155 782,135"/>
+                <polygon points="888,75 934,58 982,70 972,133 922,150 878,138"/>
+                <polygon points="982,70 1028,52 1120,58 1120,133 972,133"/>
+                <polygon points="25,122 68,152 58,215 15,235 0,195"/>
+                <polygon points="68,152 118,135 162,150 152,213 102,230 58,215"/>
+                <polygon points="162,150 212,133 258,154 248,217 198,234 152,213"/>
+                <polygon points="258,154 308,137 352,152 342,215 292,232 248,217"/>
+                <polygon points="352,152 402,135 448,155 438,218 388,235 342,215"/>
+                <polygon points="448,155 498,138 542,150 532,213 482,230 438,218"/>
+                <polygon points="542,150 592,133 638,153 628,216 578,233 532,213"/>
+                <polygon points="638,153 688,136 732,152 722,215 672,232 628,216"/>
+                <polygon points="732,152 782,135 828,155 818,218 768,235 722,215"/>
+                <polygon points="828,155 878,138 922,150 912,213 862,230 818,218"/>
+                <polygon points="912,150 972,133 1120,133 1120,213 912,213"/>
+                <polygon points="15,235 58,215 102,230 92,295 42,312 0,275"/>
+                <polygon points="102,230 152,213 198,234 188,297 138,314 92,295"/>
+                <polygon points="198,234 248,217 292,232 282,295 232,312 188,297"/>
+                <polygon points="292,232 342,215 388,235 378,298 328,315 282,295"/>
+                <polygon points="388,235 438,218 482,230 472,293 422,310 378,298"/>
+                <polygon points="482,230 532,213 578,233 568,296 518,313 472,293"/>
+                <polygon points="578,233 628,216 672,232 662,295 612,312 568,296"/>
+                <polygon points="672,232 722,215 768,235 758,298 708,315 662,295"/>
+                <polygon points="768,235 818,218 862,230 852,293 802,310 758,298"/>
+                <polygon points="862,230 912,213 1120,213 1120,293 852,293"/>
+                <polygon points="42,312 92,295 138,314 125,370 0,370 0,275"/>
+                <polygon points="138,314 188,297 232,312 220,375 125,370"/>
+                <polygon points="232,312 282,295 328,315 316,378 220,375"/>
+                <polygon points="328,315 378,298 422,310 410,373 316,378"/>
+                <polygon points="422,310 472,293 518,313 506,376 410,373"/>
+                <polygon points="518,313 568,296 612,312 600,375 506,376"/>
+                <polygon points="612,312 662,295 708,315 696,378 600,375"/>
+                <polygon points="696,378 708,315 758,298 802,310 790,373 696,378"/>
+                <polygon points="790,373 802,310 852,293 1120,293 1120,400 790,400"/>
+                <polygon points="0,370 125,370 220,375 316,378 410,373 506,376 600,375 696,378 790,373 790,400 0,400"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/Fig3-tissue-phase-transition.png" alt="Tissue phase transition solid to fluid">
+        </div>
+      </div>
+
+      <!-- Slide 4: Surface-to-volume scaling — rods of increasing size -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" stroke-linecap="round" opacity="0.15">
+                <!-- Bacteria graduating in size left to right — evokes S~V scaling -->
+                <line x1="40"  y1="200" x2="60"  y2="200" stroke-width="7"/>
+                <line x1="100" y1="200" x2="128" y2="200" stroke-width="8"/>
+                <line x1="170" y1="200" x2="208" y2="200" stroke-width="10"/>
+                <line x1="255" y1="200" x2="303" y2="200" stroke-width="12"/>
+                <line x1="360" y1="200" x2="420" y2="200" stroke-width="14"/>
+                <line x1="480" y1="200" x2="555" y2="200" stroke-width="16"/>
+                <line x1="625" y1="200" x2="717" y2="200" stroke-width="18"/>
+                <line x1="800" y1="200" x2="910" y2="200" stroke-width="20"/>
+                <line x1="1000" y1="200" x2="1100" y2="200" stroke-width="22"/>
+                <!-- Smaller bacteria scattered above and below -->
+                <line x1="60"  y1="80"  x2="90"  y2="80"  stroke-width="8"/>
+                <line x1="200" y1="100" x2="238" y2="100" stroke-width="9"/>
+                <line x1="380" y1="75"  x2="422" y2="75"  stroke-width="10"/>
+                <line x1="560" y1="90"  x2="608" y2="90"  stroke-width="11"/>
+                <line x1="730" y1="80"  x2="782" y2="80"  stroke-width="12"/>
+                <line x1="900" y1="95"  x2="958" y2="95"  stroke-width="10"/>
+                <line x1="80"  y1="320" x2="115" y2="320" stroke-width="9"/>
+                <line x1="240" y1="305" x2="282" y2="305" stroke-width="10"/>
+                <line x1="420" y1="325" x2="468" y2="325" stroke-width="11"/>
+                <line x1="600" y1="310" x2="652" y2="310" stroke-width="12"/>
+                <line x1="780" y1="320" x2="838" y2="320" stroke-width="10"/>
+                <line x1="960" y1="308" x2="1018" y2="308" stroke-width="9"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/Fig4-surface-to-volume-scaling.png" alt="Surface to volume scaling in bacteria">
+        </div>
+      </div>
+
+      <!-- Slide 5: Bacterial life and death — phase portrait curves -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" opacity="0.15">
+                <!-- Phase portrait axes -->
+                <line x1="80" y1="360" x2="1080" y2="360" stroke-width="2"/>
+                <line x1="80" y1="360" x2="80"   y2="20"  stroke-width="2"/>
+                <!-- Trajectory curves — survival (rising) -->
+                <path d="M 200 310 Q 240 200 280 120 Q 320 60 360 50" stroke-width="2.5" stroke-dasharray="0"/>
+                <path d="M 350 310 Q 390 200 430 120 Q 470 60 510 50" stroke-width="2"/>
+                <path d="M 500 310 Q 540 200 580 130 Q 620 70 660 55" stroke-width="2.5"/>
+                <!-- Death trajectories (going into grey zone) -->
+                <path d="M 700 280 Q 780 310 860 340 Q 940 360 1020 365" stroke-width="2"/>
+                <path d="M 720 250 Q 800 290 880 330 Q 960 355 1040 362" stroke-width="2.5"/>
+                <!-- Attractor point suggestion -->
+                <circle cx="320" cy="55"  r="6" fill="#c2410c" fill-opacity="0.15"/>
+                <circle cx="510" cy="50"  r="6" fill="#c2410c" fill-opacity="0.15"/>
+                <circle cx="660" cy="55"  r="6" fill="#c2410c" fill-opacity="0.15"/>
+                <!-- Death region hatching -->
+                <path d="M 700 360 L 1080 360 L 1080 320" stroke-width="1" opacity="0.5"/>
+                <line x1="750" y1="360" x2="1080" y2="345" stroke-width="0.8" opacity="0.4"/>
+                <line x1="800" y1="360" x2="1080" y2="348" stroke-width="0.8" opacity="0.4"/>
+                <line x1="850" y1="360" x2="1080" y2="351" stroke-width="0.8" opacity="0.4"/>
+                <line x1="900" y1="360" x2="1080" y2="354" stroke-width="0.8" opacity="0.4"/>
+                <line x1="950" y1="360" x2="1080" y2="356" stroke-width="0.8" opacity="0.4"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/Fig2-bacterial-life-and-death.png" alt="Bacterial life and death phase portrait">
+        </div>
+      </div>
+
+      <!-- Slide 6: HNP cover — Voronoi tissue (orange/purple like the image) -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" stroke-width="1" stroke-linejoin="round" opacity="0.15">
+                <!-- Denser, smaller Voronoi — evokes the HNP embryo cell packing -->
+                <polygon points="0,0 55,0 44,38 18,52 0,38"/>
+                <polygon points="55,0 110,0 98,35 72,50 44,38"/>
+                <polygon points="110,0 165,0 152,37 126,52 98,35"/>
+                <polygon points="165,0 220,0 208,36 182,51 152,37"/>
+                <polygon points="220,0 275,0 262,38 236,53 208,36"/>
+                <polygon points="275,0 330,0 318,35 292,50 262,38"/>
+                <polygon points="330,0 385,0 372,37 346,52 318,35"/>
+                <polygon points="385,0 440,0 428,36 402,51 372,37"/>
+                <polygon points="440,0 495,0 482,38 456,53 428,36"/>
+                <polygon points="495,0 550,0 538,35 512,50 482,38"/>
+                <polygon points="550,0 605,0 592,37 566,52 538,35"/>
+                <polygon points="605,0 660,0 648,36 622,51 592,37"/>
+                <polygon points="660,0 715,0 702,38 676,53 648,36"/>
+                <polygon points="715,0 770,0 758,35 732,50 702,38"/>
+                <polygon points="770,0 825,0 812,37 786,52 758,35"/>
+                <polygon points="825,0 880,0 868,36 842,51 812,37"/>
+                <polygon points="880,0 935,0 922,38 896,53 868,36"/>
+                <polygon points="935,0 990,0 978,35 952,50 922,38"/>
+                <polygon points="990,0 1045,0 1032,37 1006,52 978,35"/>
+                <polygon points="1045,0 1120,0 1120,38 1032,37"/>
+                <polygon points="18,52 44,38 72,50 62,88 36,102 10,80"/>
+                <polygon points="72,50 98,35 126,52 116,90 90,104 62,88"/>
+                <polygon points="126,52 152,37 182,51 172,89 146,103 116,90"/>
+                <polygon points="182,51 208,36 236,53 226,91 200,105 172,89"/>
+                <polygon points="236,53 262,38 292,50 282,88 256,102 226,91"/>
+                <polygon points="292,50 318,35 346,52 336,90 310,104 282,88"/>
+                <polygon points="346,52 372,37 402,51 392,89 366,103 336,90"/>
+                <polygon points="402,51 428,36 456,53 446,91 420,105 392,89"/>
+                <polygon points="456,53 482,38 512,50 502,88 476,102 446,91"/>
+                <polygon points="512,50 538,35 566,52 556,90 530,104 502,88"/>
+                <polygon points="566,52 592,37 622,51 612,89 586,103 556,90"/>
+                <polygon points="622,51 648,36 676,53 666,91 640,105 612,89"/>
+                <polygon points="676,53 702,38 732,50 722,88 696,102 666,91"/>
+                <polygon points="732,50 758,35 786,52 776,90 750,104 722,88"/>
+                <polygon points="786,52 812,37 842,51 832,89 806,103 776,90"/>
+                <polygon points="842,51 868,36 896,53 886,91 860,105 832,89"/>
+                <polygon points="896,53 922,38 952,50 942,88 916,102 886,91"/>
+                <polygon points="952,50 978,35 1006,52 996,90 970,104 942,88"/>
+                <polygon points="1006,52 1032,37 1120,38 1120,90 996,90"/>
+                <polygon points="10,80 36,102 26,140 0,155 0,115"/>
+                <polygon points="36,102 62,88 90,104 80,142 54,156 26,140"/>
+                <polygon points="90,104 116,90 146,103 136,141 110,155 80,142"/>
+                <polygon points="146,103 172,89 200,105 190,143 164,157 136,141"/>
+                <polygon points="200,105 226,91 256,102 246,140 220,154 190,143"/>
+                <polygon points="256,102 282,88 310,104 300,142 274,156 246,140"/>
+                <polygon points="310,104 336,90 366,103 356,141 330,155 300,142"/>
+                <polygon points="366,103 392,89 420,105 410,143 384,157 356,141"/>
+                <polygon points="420,105 446,91 476,102 466,140 440,154 410,143"/>
+                <polygon points="476,102 502,88 530,104 520,142 494,156 466,140"/>
+                <polygon points="530,104 556,90 586,103 576,141 550,155 520,142"/>
+                <polygon points="586,103 612,89 640,105 630,143 604,157 576,141"/>
+                <polygon points="640,105 666,91 696,102 686,140 660,154 630,143"/>
+                <polygon points="696,102 722,88 750,104 740,142 714,156 686,140"/>
+                <polygon points="750,104 776,90 806,103 796,141 770,155 740,142"/>
+                <polygon points="806,103 832,89 860,105 850,143 824,157 796,141"/>
+                <polygon points="860,105 886,91 916,102 906,140 880,154 850,143"/>
+                <polygon points="916,102 942,88 970,104 960,142 934,156 906,140"/>
+                <polygon points="970,104 996,90 1120,90 1120,142 960,142"/>
+                <polygon points="0,155 26,140 54,156 44,194 18,208 0,190"/>
+                <polygon points="54,156 80,142 110,155 100,193 74,207 44,194"/>
+                <polygon points="110,155 136,141 164,157 154,195 128,209 100,193"/>
+                <polygon points="164,157 190,143 220,154 210,192 184,206 154,195"/>
+                <polygon points="220,154 246,140 274,156 264,194 238,208 210,192"/>
+                <polygon points="274,156 300,142 330,155 320,193 294,207 264,194"/>
+                <polygon points="330,155 356,141 384,157 374,195 348,209 320,193"/>
+                <polygon points="384,157 410,143 440,154 430,192 404,206 374,195"/>
+                <polygon points="440,154 466,140 494,156 484,194 458,208 430,192"/>
+                <polygon points="494,156 520,142 550,155 540,193 514,207 484,194"/>
+                <polygon points="550,155 576,141 604,157 594,195 568,209 540,193"/>
+                <polygon points="604,157 630,143 660,154 650,192 624,206 594,195"/>
+                <polygon points="660,154 686,140 714,156 704,194 678,208 650,192"/>
+                <polygon points="714,156 740,142 770,155 760,193 734,207 704,194"/>
+                <polygon points="770,155 796,141 824,157 814,195 788,209 760,193"/>
+                <polygon points="824,157 850,143 880,154 870,192 844,206 814,195"/>
+                <polygon points="880,154 906,140 934,156 924,194 898,208 870,192"/>
+                <polygon points="934,156 960,142 1120,142 1120,194 924,194"/>
+                <polygon points="0,190 18,208 8,246 0,250"/>
+                <polygon points="18,208 44,194 74,207 64,245 38,259 8,246"/>
+                <polygon points="74,207 100,193 128,209 118,247 92,261 64,245"/>
+                <polygon points="128,209 154,195 184,206 174,244 148,258 118,247"/>
+                <polygon points="184,206 210,192 238,208 228,246 202,260 174,244"/>
+                <polygon points="238,208 264,194 294,207 284,245 258,259 228,246"/>
+                <polygon points="294,207 320,193 348,209 338,247 312,261 284,245"/>
+                <polygon points="348,209 374,195 404,206 394,244 368,258 338,247"/>
+                <polygon points="404,206 430,192 458,208 448,246 422,260 394,244"/>
+                <polygon points="458,208 484,194 514,207 504,245 478,259 448,246"/>
+                <polygon points="514,207 540,193 568,209 558,247 532,261 504,245"/>
+                <polygon points="568,209 594,195 624,206 614,244 588,258 558,247"/>
+                <polygon points="624,206 650,192 678,208 668,246 642,260 614,244"/>
+                <polygon points="678,208 704,194 734,207 724,245 698,259 668,246"/>
+                <polygon points="734,207 760,193 788,209 778,247 752,261 724,245"/>
+                <polygon points="788,209 814,195 844,206 834,244 808,258 778,247"/>
+                <polygon points="844,206 870,192 898,208 888,246 862,260 834,244"/>
+                <polygon points="898,208 924,194 1120,194 1120,246 888,246"/>
+                <polygon points="0,250 8,246 38,259 28,297 0,310"/>
+                <polygon points="38,259 64,245 92,261 82,299 56,313 28,297"/>
+                <polygon points="92,261 118,247 148,258 138,296 112,310 82,299"/>
+                <polygon points="148,258 174,244 202,260 192,298 166,312 138,296"/>
+                <polygon points="202,260 228,246 258,259 248,297 222,311 192,298"/>
+                <polygon points="258,259 284,245 312,261 302,299 276,313 248,297"/>
+                <polygon points="312,261 338,247 368,258 358,296 332,310 302,299"/>
+                <polygon points="368,258 394,244 422,260 412,298 386,312 358,296"/>
+                <polygon points="422,260 448,246 478,259 468,297 442,311 412,298"/>
+                <polygon points="478,259 504,245 532,261 522,299 496,313 468,297"/>
+                <polygon points="532,261 558,247 588,258 578,296 552,310 522,299"/>
+                <polygon points="588,258 614,244 642,260 632,298 606,312 578,296"/>
+                <polygon points="642,260 668,246 698,259 688,297 662,311 632,298"/>
+                <polygon points="698,259 724,245 752,261 742,299 716,313 688,297"/>
+                <polygon points="752,261 778,247 808,258 798,296 772,310 742,299"/>
+                <polygon points="808,258 834,244 862,260 852,298 826,312 798,296"/>
+                <polygon points="862,260 888,246 1120,246 1120,298 852,298"/>
+                <polygon points="0,310 28,297 56,313 46,351 18,365 0,348"/>
+                <polygon points="56,313 82,299 112,310 102,348 76,362 46,351"/>
+                <polygon points="112,310 138,296 166,312 156,350 130,364 102,348"/>
+                <polygon points="166,312 192,298 222,311 212,349 186,363 156,350"/>
+                <polygon points="222,311 248,297 276,313 266,351 240,365 212,349"/>
+                <polygon points="276,313 302,299 332,310 322,348 296,362 266,351"/>
+                <polygon points="332,310 358,296 386,312 376,350 350,364 322,348"/>
+                <polygon points="386,312 412,298 442,311 432,349 406,363 376,350"/>
+                <polygon points="442,311 468,297 496,313 486,351 460,365 432,349"/>
+                <polygon points="496,313 522,299 552,310 542,348 516,362 486,351"/>
+                <polygon points="552,310 578,296 606,312 596,350 570,364 542,348"/>
+                <polygon points="606,312 632,298 662,311 652,349 626,363 596,350"/>
+                <polygon points="662,311 688,297 716,313 706,351 680,365 652,349"/>
+                <polygon points="716,313 742,299 772,310 762,348 736,362 706,351"/>
+                <polygon points="772,310 798,296 826,312 816,350 790,364 762,348"/>
+                <polygon points="826,312 852,298 1120,298 1120,350 816,350"/>
+                <polygon points="0,348 18,365 8,400 0,400"/>
+                <polygon points="18,365 46,351 76,362 66,400 8,400"/>
+                <polygon points="76,362 102,348 130,364 120,400 66,400"/>
+                <polygon points="130,364 156,350 186,363 176,400 120,400"/>
+                <polygon points="186,363 212,349 240,365 230,400 176,400"/>
+                <polygon points="240,365 266,351 296,362 286,400 230,400"/>
+                <polygon points="296,362 322,348 350,364 340,400 286,400"/>
+                <polygon points="350,364 376,350 406,363 396,400 340,400"/>
+                <polygon points="406,363 432,349 460,365 450,400 396,400"/>
+                <polygon points="460,365 486,351 516,362 506,400 450,400"/>
+                <polygon points="516,362 542,348 570,364 560,400 506,400"/>
+                <polygon points="570,364 596,350 626,363 616,400 560,400"/>
+                <polygon points="626,363 652,349 680,365 670,400 616,400"/>
+                <polygon points="680,365 706,351 736,362 726,400 670,400"/>
+                <polygon points="736,362 762,348 790,364 780,400 726,400"/>
+                <polygon points="790,364 816,350 1120,350 1120,400 780,400"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/HNPCoverFinal.png" alt="Hindbrain neuropore morphogenesis">
+        </div>
+      </div>
+
+      <!-- Slide 7: Kratz PRX Life 2026 — RNN nodes and connections -->
+      <div class="slide">
+        <div class="slide-inner">
+          <div class="slide-pattern">
+            <svg viewBox="0 0 1120 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+              <rect width="1120" height="400" fill="#f4f1ea"/>
+              <g fill="none" stroke="#c2410c" opacity="0.15">
+                <!-- RNN: input nodes left, hidden middle, output right, with connections -->
+                <!-- Input layer -->
+                <circle cx="100" cy="100" r="18" stroke-width="1.8"/>
+                <circle cx="100" cy="200" r="18" stroke-width="1.8"/>
+                <circle cx="100" cy="300" r="18" stroke-width="1.8"/>
+                <!-- Hidden layer 1 -->
+                <circle cx="340" cy="80"  r="18" stroke-width="1.8"/>
+                <circle cx="340" cy="200" r="18" stroke-width="1.8"/>
+                <circle cx="340" cy="320" r="18" stroke-width="1.8"/>
+                <!-- Hidden layer 2 (recurrent) -->
+                <circle cx="580" cy="130" r="18" stroke-width="1.8"/>
+                <circle cx="580" cy="270" r="18" stroke-width="1.8"/>
+                <!-- Output layer -->
+                <circle cx="820" cy="160" r="18" stroke-width="1.8"/>
+                <circle cx="820" cy="240" r="18" stroke-width="1.8"/>
+                <!-- Far right readout -->
+                <circle cx="1020" cy="200" r="18" stroke-width="1.8"/>
+                <!-- Input → Hidden 1 connections -->
+                <line x1="118" y1="100" x2="322" y2="83"  stroke-width="1.2"/>
+                <line x1="118" y1="100" x2="322" y2="200" stroke-width="1.2"/>
+                <line x1="118" y1="200" x2="322" y2="80"  stroke-width="1.2"/>
+                <line x1="118" y1="200" x2="322" y2="200" stroke-width="1.2"/>
+                <line x1="118" y1="200" x2="322" y2="320" stroke-width="1.2"/>
+                <line x1="118" y1="300" x2="322" y2="200" stroke-width="1.2"/>
+                <line x1="118" y1="300" x2="322" y2="320" stroke-width="1.2"/>
+                <!-- Hidden 1 → Hidden 2 -->
+                <line x1="358" y1="83"  x2="562" y2="133" stroke-width="1.2"/>
+                <line x1="358" y1="200" x2="562" y2="133" stroke-width="1.2"/>
+                <line x1="358" y1="200" x2="562" y2="270" stroke-width="1.2"/>
+                <line x1="358" y1="320" x2="562" y2="270" stroke-width="1.2"/>
+                <!-- Recurrent self-loops on hidden 2 -->
+                <path d="M 572 115 Q 540 80 590 80 Q 620 80 608 115" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <path d="M 572 255 Q 540 220 590 220 Q 620 220 608 255" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <!-- Hidden 2 → Output -->
+                <line x1="598" y1="133" x2="802" y2="163" stroke-width="1.2"/>
+                <line x1="598" y1="133" x2="802" y2="240" stroke-width="1.2"/>
+                <line x1="598" y1="270" x2="802" y2="163" stroke-width="1.2"/>
+                <line x1="598" y1="270" x2="802" y2="240" stroke-width="1.2"/>
+                <!-- Output → Readout -->
+                <line x1="838" y1="163" x2="1002" y2="200" stroke-width="1.5"/>
+                <line x1="838" y1="240" x2="1002" y2="200" stroke-width="1.5"/>
+                <!-- Environment signal (left) -->
+                <path d="M 0 200 Q 30 160 50 200 T 80 200" stroke-width="2" stroke-dasharray="5 3"/>
+                <!-- Growth rate output (right) -->
+                <path d="M 1040 200 Q 1060 160 1080 150 T 1120 130" stroke-width="2"/>
+              </g>
+              <!-- Filled node centres -->
+              <g fill="#c2410c" opacity="0.12">
+                <circle cx="100" cy="100" r="8"/>
+                <circle cx="100" cy="200" r="8"/>
+                <circle cx="100" cy="300" r="8"/>
+                <circle cx="340" cy="80"  r="8"/>
+                <circle cx="340" cy="200" r="8"/>
+                <circle cx="340" cy="320" r="8"/>
+                <circle cx="580" cy="130" r="8"/>
+                <circle cx="580" cy="270" r="8"/>
+                <circle cx="820" cy="160" r="8"/>
+                <circle cx="820" cy="240" r="8"/>
+                <circle cx="1020" cy="200" r="8"/>
+              </g>
+            </svg>
+          </div>
+          <img class="slide-img" src="/assets/img/Kratz2026_PRXLife.png" alt="Kratz PRX Life 2026 bacterial learning">
+        </div>
+      </div>
+
+    </div><!-- /slides-container -->
     <div class="slide-dots">
       <button class="slide-dot active" onclick="goTo(0)" aria-label="Slide 1"></button>
       <button class="slide-dot" onclick="goTo(1)" aria-label="Slide 2"></button>
